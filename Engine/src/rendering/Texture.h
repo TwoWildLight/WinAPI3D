@@ -16,17 +16,22 @@ private:
 
 public:
 	Texture(UINT w, UINT h);
-	Texture(std::string filePath);
+	Texture(const std::string& filePath);
 	~Texture();
+
+private:
+	void FlipRB();
 
 public:
 	HBITMAP GenerateBitmap();
 
-	size_t GetWidth();
-	size_t GetHeight();
+	size_t GetWidth() const;
+	size_t GetHeight() const;
 
+	void PutPixel(UINT x, UINT y, UINT c);
 	void PutPixel(UINT x, UINT y, const Vector3& c);
-	void GetPixel(UINT x, UINT y) const;
+	UINT GetPixelRGB(UINT x, UINT y) const;
+	Vector3 GetPixel(UINT x, UINT y) const;
 
 	void Clear();
 };
