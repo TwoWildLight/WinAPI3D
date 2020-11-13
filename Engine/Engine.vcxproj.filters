@@ -10,6 +10,9 @@
     <Filter Include="src\utility">
       <UniqueIdentifier>{6a068973-368d-4ba8-a458-9fb587f3e346}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\rendering">
+      <UniqueIdentifier>{017be195-c643-4c17-b08d-c827e46204f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\Keyboard.cpp">
@@ -23,6 +26,9 @@
     </ClCompile>
     <ClCompile Include="src\core\Graphics.cpp">
       <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rendering\Texture.cpp">
+      <Filter>src\rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +48,12 @@
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\Timer.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\Texture.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\Vector.h">
       <Filter>src\utility</Filter>
     </ClInclude>
   </ItemGroup>

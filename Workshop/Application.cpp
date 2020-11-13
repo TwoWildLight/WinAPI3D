@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <core/Mouse.h>
 
 Application::Application()
 	:
@@ -19,8 +20,13 @@ void Application::Initiate()
 
 void Application::Update(float fDeltaTime)
 {
+	for (int i = 0; i < 1280; i++)
+	{
+		GetGFX().PutPixel(i, 400, { 255.0f, 0.0f, 83.0f });
+	}
 }
 
 void Application::Render(float fDeltaTime)
 {
+	bool debug = true;
 }

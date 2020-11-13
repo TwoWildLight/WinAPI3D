@@ -11,10 +11,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinMain.cpp">
+    <ClCompile Include="Application.cpp">
       <Filter>Source FIle</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
+    <ClCompile Include="WinMain.cpp">
       <Filter>Source FIle</Filter>
     </ClCompile>
   </ItemGroup>

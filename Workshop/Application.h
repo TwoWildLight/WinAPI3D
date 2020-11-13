@@ -1,6 +1,6 @@
 #pragma once
-#include <src/core/Window.h>
-#include <src/utility/Timer.h>
+#include <core/Window.h>
+#include <utility/Timer.h>
 
 class Application : public Window
 {

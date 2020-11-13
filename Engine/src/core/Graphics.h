@@ -1,14 +1,17 @@
 #pragma once
 #include "LightWindows.h"
+#include "../rendering/Texture.h"
 
 class Graphics final
 {
 private:
-	HDC hDC;
-
 	UINT screenWidth;
 	UINT screenHeight;
-	bool bFullscreen;
+
+	HDC hMainDC;
+	Texture rendertarget;
+
+	bool bFullScreen;
 
 public:
 	Graphics(HWND hWnd, UINT w, UINT h);
@@ -25,4 +28,6 @@ public:
 	UINT GetWidth() const;
 	UINT GetHeight() const;
 	bool IsFullScreen() const;
+
+	void PutPixel(UINT x, UINT y, const Vector3& c);
 };

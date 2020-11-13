@@ -3,19 +3,23 @@
 Graphics::Graphics(HWND hWnd, UINT w, UINT h)
 	:
 	screenWidth(w),
-	screenHeight(h)
+	screenHeight(h),
+	rendertarget(w, h),
+	bFullScreen(false)
 {
-	hDC = GetDC(hWnd);
+	hMainDC = GetDC(hWnd);
 }
 
 void Graphics::BeginFrame()
 {
-	Rectangle(hDC, 100, 100, 300, 300);
+	rendertarget.Clear();
 }
 
 void Graphics::EndFrame()
 {
-
+	HDC textureDC = CreateCompatibleDC(hMainDC);
+	SelectObject(textureDC, rendertarget.GenerateBitmap());
+	BitBlt(hMainDC, 0, 0, screenWidth, screenWidth, textureDC, 0, 0, SRCCOPY);
 }
 
 UINT Graphics::GetWidth() const
@@ -30,5 +34,10 @@ UINT Graphics::GetHeight() const
 
 bool Graphics::IsFullScreen() const
 {
-	return bFullscreen;
+	return bFullScreen;
+}
+
+void Graphics::PutPixel(UINT x, UINT y, const Vector3& c)
+{
+	rendertarget.PutPixel(x, y, c);
 }

@@ -127,12 +127,17 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>library/;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -147,6 +152,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>library/;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -155,12 +161,17 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\Graphics.cpp" />
     <ClCompile Include="src\core\Keyboard.cpp" />
     <ClCompile Include="src\core\Mouse.cpp" />
     <ClCompile Include="src\core\Window.cpp" />
+    <ClCompile Include="src\rendering\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Graphics.h" />
@@ -168,7 +179,9 @@
     <ClInclude Include="src\core\LightWindows.h" />
     <ClInclude Include="src\core\Mouse.h" />
     <ClInclude Include="src\core\Window.h" />
+    <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\utility\Timer.h" />
+    <ClInclude Include="src\utility\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
