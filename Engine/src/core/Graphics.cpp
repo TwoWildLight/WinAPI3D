@@ -4,22 +4,23 @@ Graphics::Graphics(HWND hWnd, UINT w, UINT h)
 	:
 	screenWidth(w),
 	screenHeight(h),
-	rendertarget(w, h),
-	bFullScreen(false)
+	renderTargetView(w, h)
 {
 	hMainDC = GetDC(hWnd);
+	hBufferDC = CreateCompatibleDC(hMainDC);
 }
 
 void Graphics::BeginFrame()
 {
-	rendertarget.Clear();
+	renderTargetView.Clear();
 }
 
 void Graphics::EndFrame()
 {
-	HDC textureDC = CreateCompatibleDC(hMainDC);
-	SelectObject(textureDC, rendertarget.GenerateBitmap());
-	BitBlt(hMainDC, 0, 0, screenWidth, screenWidth, textureDC, 0, 0, SRCCOPY);
+	HBITMAP bitmapView = renderTargetView.GenerateBitmap();
+	SelectObject(hBufferDC, bitmapView);
+	BitBlt(hMainDC, 0, 0, screenWidth, screenWidth, hBufferDC, 0, 0, SRCCOPY);
+	DeleteObject(bitmapView);
 }
 
 UINT Graphics::GetWidth() const
@@ -32,12 +33,7 @@ UINT Graphics::GetHeight() const
 	return screenHeight;
 }
 
-bool Graphics::IsFullScreen() const
-{
-	return bFullScreen;
-}
-
 void Graphics::PutPixel(UINT x, UINT y, const Vector3& c)
 {
-	rendertarget.PutPixel(x, y, c);
+	renderTargetView.PutPixel(x, y, c);
 }

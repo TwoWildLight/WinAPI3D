@@ -72,8 +72,8 @@ Window::~Window()
 
 void Window::CenterCursor() const
 {
-    UINT hWndFrame = pGFX->IsFullScreen() ? 0 : 8;
-    UINT vWndFrame = pGFX->IsFullScreen() ? 0 : 31;
+    UINT hWndFrame = 8u;
+    UINT vWndFrame = 31u;
 
     Mouse::SetPosX(int(pGFX->GetWidth() / 2.0f - hWndFrame));
     Mouse::SetPosY(int(pGFX->GetHeight() / 2.0f - vWndFrame));

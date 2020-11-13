@@ -49,7 +49,7 @@ void Texture::FlipRB()
 	{
 		for (size_t iWidth = 0; iWidth < image.width; iWidth++)
 		{
-			auto color = GetPixel(iWidth, iHeight);
+			auto color = GetPixel((UINT)iWidth, (UINT)iHeight);
 			std::swap(color.x, color.z);
 			PutPixel((UINT)iWidth, (UINT)iHeight, color);
 		}
@@ -74,11 +74,15 @@ size_t Texture::GetHeight() const
 
 void Texture::PutPixel(UINT x, UINT y, UINT c)
 {
+	size_t target = GetWidth() * y + x;
+	if (target < 0.0f || target > GetWidth() * GetHeight()) return;
 	*reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = c;
 }
 
 void Texture::PutPixel(UINT x, UINT y, const Vector3& c)
 {
+	size_t target = GetWidth() * y + x;
+	if (target < 0.0f || target > GetWidth() * GetHeight()) return;
 	*reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = RGB(c.z, c.y, c.x);
 }
 

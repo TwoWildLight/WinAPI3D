@@ -13,6 +13,15 @@
     <Filter Include="src\rendering">
       <UniqueIdentifier>{017be195-c643-4c17-b08d-c827e46204f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\rendering\geometries">
+      <UniqueIdentifier>{e4bc906c-6521-4f3c-8874-72be51b9b1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rendering\pipeline">
+      <UniqueIdentifier>{87940382-3fc5-4fe4-bdad-7b9e3f5b9989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility\math">
+      <UniqueIdentifier>{51e8e4b7-3bb5-4f14-b427-7f17cc38c5dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\Keyboard.cpp">
@@ -29,6 +38,15 @@
     </ClCompile>
     <ClCompile Include="src\rendering\Texture.cpp">
       <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\Matrix.cpp">
+      <Filter>src\utility\math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\Vector.cpp">
+      <Filter>src\utility\math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rendering\Rasterizer.cpp">
+      <Filter>src\rendering\pipeline</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,8 +71,26 @@
     <ClInclude Include="src\rendering\Texture.h">
       <Filter>src\rendering</Filter>
     </ClInclude>
+    <ClInclude Include="src\rendering\Cube.h">
+      <Filter>src\rendering\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\IndexedTriangleList.h">
+      <Filter>src\rendering\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\Pipeline.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\Matrix.h">
+      <Filter>src\utility\math</Filter>
+    </ClInclude>
     <ClInclude Include="src\utility\Vector.h">
-      <Filter>src\utility</Filter>
+      <Filter>src\utility\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\Rasterizer.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\CommonOps.h">
+      <Filter>src\utility\math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

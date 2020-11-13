@@ -5,13 +5,12 @@
 class Graphics final
 {
 private:
+	HDC hMainDC;
+	HDC hBufferDC;
+	Texture renderTargetView;
+
 	UINT screenWidth;
 	UINT screenHeight;
-
-	HDC hMainDC;
-	Texture rendertarget;
-
-	bool bFullScreen;
 
 public:
 	Graphics(HWND hWnd, UINT w, UINT h);
@@ -27,7 +26,6 @@ public:
 
 	UINT GetWidth() const;
 	UINT GetHeight() const;
-	bool IsFullScreen() const;
 
 	void PutPixel(UINT x, UINT y, const Vector3& c);
 };

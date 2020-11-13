@@ -171,7 +171,10 @@
     <ClCompile Include="src\core\Keyboard.cpp" />
     <ClCompile Include="src\core\Mouse.cpp" />
     <ClCompile Include="src\core\Window.cpp" />
+    <ClCompile Include="src\rendering\Rasterizer.cpp" />
     <ClCompile Include="src\rendering\Texture.cpp" />
+    <ClCompile Include="src\utility\Matrix.cpp" />
+    <ClCompile Include="src\utility\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Graphics.h" />
@@ -179,7 +182,13 @@
     <ClInclude Include="src\core\LightWindows.h" />
     <ClInclude Include="src\core\Mouse.h" />
     <ClInclude Include="src\core\Window.h" />
+    <ClInclude Include="src\rendering\Cube.h" />
+    <ClInclude Include="src\rendering\IndexedTriangleList.h" />
+    <ClInclude Include="src\rendering\Pipeline.h" />
+    <ClInclude Include="src\rendering\Rasterizer.h" />
     <ClInclude Include="src\rendering\Texture.h" />
+    <ClInclude Include="src\utility\CommonOps.h" />
+    <ClInclude Include="src\utility\Matrix.h" />
     <ClInclude Include="src\utility\Timer.h" />
     <ClInclude Include="src\utility\Vector.h" />
   </ItemGroup>
