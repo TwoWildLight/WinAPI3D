@@ -7,10 +7,16 @@ class Graphics final
 private:
 	HDC hMainDC;
 	HDC hBufferDC;
-	Texture renderTargetView;
+
+	std::unique_ptr<Texture> pRenderTargetView;
 
 	UINT screenWidth;
 	UINT screenHeight;
+
+	UINT resolutionWidth;
+	UINT resolutionHeight;
+
+	const float resolutionScale = 1.0f;
 
 public:
 	Graphics(HWND hWnd, UINT w, UINT h);

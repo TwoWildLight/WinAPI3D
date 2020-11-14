@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -173,6 +173,9 @@
     <ClCompile Include="src\core\Keyboard.cpp" />
     <ClCompile Include="src\core\Mouse.cpp" />
     <ClCompile Include="src\core\Window.cpp" />
+    <ClCompile Include="src\rendering\DynamicConstant.cpp" />
+    <ClCompile Include="src\rendering\DynamicVertex.cpp" />
+    <ClCompile Include="src\rendering\Pipeline.cpp" />
     <ClCompile Include="src\rendering\Rasterizer.cpp" />
     <ClCompile Include="src\rendering\Texture.cpp" />
     <ClCompile Include="src\utility\Matrix.cpp" />
@@ -186,11 +189,19 @@
     <ClInclude Include="src\core\LightWindows.h" />
     <ClInclude Include="src\core\Mouse.h" />
     <ClInclude Include="src\core\Window.h" />
+    <ClInclude Include="src\rendering\ConstantBuffer.h" />
+    <ClInclude Include="src\rendering\Context.h" />
     <ClInclude Include="src\rendering\Cube.h" />
+    <ClInclude Include="src\rendering\DynamicConstant.h" />
+    <ClInclude Include="src\rendering\DynamicVertex.h" />
     <ClInclude Include="src\rendering\IndexedTriangleList.h" />
+    <ClInclude Include="src\rendering\ScreenTransformer.h" />
     <ClInclude Include="src\rendering\Pipeline.h" />
     <ClInclude Include="src\rendering\Rasterizer.h" />
+    <ClInclude Include="src\rendering\Tessellator.h" />
     <ClInclude Include="src\rendering\Texture.h" />
+    <ClInclude Include="src\rendering\TransformCBuf.h" />
+    <ClInclude Include="src\rendering\VertexShader.h" />
     <ClInclude Include="src\utility\Matrix.h" />
     <ClInclude Include="src\utility\Timer.h" />
     <ClInclude Include="src\utility\Vector.h" />

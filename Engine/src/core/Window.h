@@ -24,6 +24,9 @@ private:
 	static WindowClass wndClass;
 	HWND hWnd;
 
+	UINT windowWidth;
+	UINT windowHeight;
+
 	std::unique_ptr<Graphics> pGFX;
 
 	std::vector<BYTE> rawBuffer;
@@ -39,6 +42,9 @@ protected:
 	bool ProceedMessage();
 	HWND GetWND() const;
 	Graphics& GetGFX() const;
+
+	UINT GetWidth() const;
+	UINT GetHeight() const;
 
 	void CenterCursor() const;
 	void EnableCursor();

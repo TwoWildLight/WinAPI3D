@@ -1,9 +1,9 @@
 #pragma once
 #include <core/Window.h>
 #include <utility/Timer.h>
-#include <rendering/IndexedTriangleList.h>
-#include <rendering/Rasterizer.h>
 #include <components/Camera.h>
+#include <rendering/Pipeline.h>
+#include "rendering/VertexShader.h"
 
 class Application : public Window
 {
@@ -11,8 +11,11 @@ private:
 	Timer timer;
 	Camera camera;
 
-	Rasterizer rasterizer;
-	IndexedTriangleList cube;
+	Pipeline pipeline;
+
+	VertexShader defaultShader;
+
+	std::unique_ptr<IndexedTriangleList> pCube;
 
 public:
 	Application();

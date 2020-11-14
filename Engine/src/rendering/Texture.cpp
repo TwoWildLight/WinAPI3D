@@ -58,8 +58,7 @@ void Texture::FlipRB()
 
 HBITMAP Texture::GenerateBitmap()
 {
-	auto& metadata = pTexture->GetMetadata();
-	return CreateBitmap((int)metadata.width, (int)metadata.height, 1u, 32u, pTexture->GetPixels());
+	return CreateBitmap((int)GetWidth(), (int)GetHeight(), 1u, 32u, pTexture->GetPixels());
 }
 
 size_t Texture::GetWidth() const
@@ -81,7 +80,8 @@ void Texture::PutPixel(UINT x, UINT y, UINT c)
 
 void Texture::PutPixel(UINT x, UINT y, const Vector3& c)
 {
-	PutPixel(x, y, RGB(c.z, c.y, c.x));
+	auto color = c * 255.0f;
+	PutPixel(x, y, RGB(color.z, color.y, color.x));
 }
 
 Vector3 Texture::GetPixel(UINT x, UINT y) const

@@ -57,6 +57,15 @@
     <ClCompile Include="src\components\Object.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\rendering\Pipeline.cpp">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rendering\DynamicConstant.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rendering\DynamicVertex.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Keyboard.h">
@@ -103,6 +112,30 @@
     </ClInclude>
     <ClInclude Include="src\components\Object.h">
       <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\Context.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\Tessellator.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\DynamicConstant.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\ConstantBuffer.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\ScreenTransformer.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\DynamicVertex.h">
+      <Filter>src\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\VertexShader.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\TransformCBuf.h">
+      <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,37 +3,41 @@
 Graphics::Graphics(HWND hWnd, UINT w, UINT h)
 	:
 	screenWidth(w),
-	screenHeight(h),
-	renderTargetView(w, h)
+	screenHeight(h)
 {
 	hMainDC = GetDC(hWnd);
 	hBufferDC = CreateCompatibleDC(hMainDC);
+
+	resolutionWidth = UINT((float)screenWidth * resolutionScale);
+	resolutionHeight = UINT((float)screenHeight * resolutionScale);
+
+	pRenderTargetView = std::make_unique<Texture>(resolutionWidth, resolutionHeight);
 }
 
 void Graphics::BeginFrame()
 {
-	renderTargetView.Clear();
+	pRenderTargetView->Clear();
 }
 
 void Graphics::EndFrame()
 {
-	HBITMAP bitmapView = renderTargetView.GenerateBitmap();
+	HBITMAP bitmapView = pRenderTargetView->GenerateBitmap();
 	SelectObject(hBufferDC, bitmapView);
-	BitBlt(hMainDC, 0, 0, screenWidth, screenWidth, hBufferDC, 0, 0, SRCCOPY);
+	StretchBlt(hMainDC, 0, 0, screenWidth, screenHeight, hBufferDC, 0, 0, resolutionWidth, resolutionHeight, SRCCOPY);
 	DeleteObject(bitmapView);
 }
 
 UINT Graphics::GetWidth() const
 {
-	return screenWidth;
+	return resolutionWidth;
 }
 
 UINT Graphics::GetHeight() const
 {
-	return screenHeight;
+	return resolutionHeight;
 }
 
 void Graphics::PutPixel(UINT x, UINT y, const Vector3& c)
 {
-	renderTargetView.PutPixel(x, y, c);
+	pRenderTargetView->PutPixel(x, y, c);
 }

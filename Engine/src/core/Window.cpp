@@ -33,6 +33,8 @@ Window::WindowClass::~WindowClass()
 
 Window::Window(LPWSTR wndName, UINT w, UINT h)
     :
+    windowWidth(w),
+    windowHeight(h),
     bCursorEnabled(true)
 {
     RECT wndRect = { 0, 0, (LONG)w, (LONG)h };
@@ -131,6 +133,16 @@ HWND Window::GetWND() const
 Graphics& Window::GetGFX() const
 {
     return *pGFX.get();
+}
+
+UINT Window::GetWidth() const
+{
+    return windowWidth;
+}
+
+UINT Window::GetHeight() const
+{
+    return windowHeight;
 }
 
 bool Window::RegisterRawMouse() const

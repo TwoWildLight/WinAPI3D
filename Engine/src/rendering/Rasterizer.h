@@ -1,14 +1,13 @@
 #pragma once
 #include "../core/Graphics.h"
+#include "DynamicVertex.h"
 
 class Rasterizer
 {
 private:
-	Graphics& gfx;
+	// temporary code
+	const Vector3 defaultColor = { 1.0f ,0.0f, 0.34f };
 
 public:
-	Rasterizer(Graphics& gfx);
-
-public:
-	void DrawLine(const Vector3& from, const Vector3& to, const Vector3& c);
+	void DrawLine(Graphics& gfx, const DVTX::Vertex& from, const DVTX::Vertex& to);
 };
