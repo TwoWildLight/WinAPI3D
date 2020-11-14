@@ -75,15 +75,13 @@ size_t Texture::GetHeight() const
 void Texture::PutPixel(UINT x, UINT y, UINT c)
 {
 	size_t target = GetWidth() * y + x;
-	if (target < 0.0f || target > GetWidth() * GetHeight()) return;
+	if (x >= GetWidth() || target < 0.0f || target > GetWidth() * GetHeight()) return;
 	*reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = c;
 }
 
 void Texture::PutPixel(UINT x, UINT y, const Vector3& c)
 {
-	size_t target = GetWidth() * y + x;
-	if (target < 0.0f || target > GetWidth() * GetHeight()) return;
-	*reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = RGB(c.z, c.y, c.x);
+	PutPixel(x, y, RGB(c.z, c.y, c.x));
 }
 
 Vector3 Texture::GetPixel(UINT x, UINT y) const

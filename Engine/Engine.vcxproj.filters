@@ -22,6 +22,9 @@
     <Filter Include="src\utility\math">
       <UniqueIdentifier>{51e8e4b7-3bb5-4f14-b427-7f17cc38c5dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\components">
+      <UniqueIdentifier>{953ec8d9-9216-4805-9bdc-3ca783a52720}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\Keyboard.cpp">
@@ -47,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="src\rendering\Rasterizer.cpp">
       <Filter>src\rendering\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\Camera.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\Object.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,8 +98,11 @@
     <ClInclude Include="src\rendering\Rasterizer.h">
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\CommonOps.h">
-      <Filter>src\utility\math</Filter>
+    <ClInclude Include="src\components\Camera.h">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\Object.h">
+      <Filter>src\components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

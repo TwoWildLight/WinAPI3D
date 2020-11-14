@@ -167,6 +167,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\Camera.cpp" />
+    <ClCompile Include="src\components\Object.cpp" />
     <ClCompile Include="src\core\Graphics.cpp" />
     <ClCompile Include="src\core\Keyboard.cpp" />
     <ClCompile Include="src\core\Mouse.cpp" />
@@ -177,6 +179,8 @@
     <ClCompile Include="src\utility\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\Camera.h" />
+    <ClInclude Include="src\components\Object.h" />
     <ClInclude Include="src\core\Graphics.h" />
     <ClInclude Include="src\core\Keyboard.h" />
     <ClInclude Include="src\core\LightWindows.h" />
@@ -187,7 +191,6 @@
     <ClInclude Include="src\rendering\Pipeline.h" />
     <ClInclude Include="src\rendering\Rasterizer.h" />
     <ClInclude Include="src\rendering\Texture.h" />
-    <ClInclude Include="src\utility\CommonOps.h" />
     <ClInclude Include="src\utility\Matrix.h" />
     <ClInclude Include="src\utility\Timer.h" />
     <ClInclude Include="src\utility\Vector.h" />

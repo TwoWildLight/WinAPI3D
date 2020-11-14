@@ -92,6 +92,64 @@ Matrix Matrix::Translation(float x, float y, float z)
 	return std::move(m);
 }
 
+Matrix Matrix::LookAt(const Vector3& pos, const Vector3& dir, const Vector3& up)
+{
+	const Vector3 right = Vector3::Cross(up, dir);
+	Matrix m = Identity();
+	m._11 = right.x, m._12 = up.x, m._13 = dir.x;
+	m._21 = right.y, m._22 = up.y, m._23 = dir.y;
+	m._31 = right.z, m._32 = up.z, m._33 = dir.z;
+	m._41 = -Vector3::Dot(pos, right), m._42 = -Vector3::Dot(pos, up), m._43 = -Vector3::Dot(pos, dir);
+	return std::move(m);
+}
+
+Matrix Matrix::Projection(float fov, float aspectRatio, float near, float far)
+{
+	float w = 1.0f / tanf(fov * 0.5f);
+	float h = w * aspectRatio;
+	float Q = far / (far - near);
+
+	Matrix m = Identity();
+	m._11 = w;
+	m._22 = h;
+	m._33 = Q;
+	m._34 = 1.0f;
+	m._43 = -Q * near;
+	m._44 = 0.0f;
+
+	return std::move(m);
+}
+
+Vector3 Matrix::ToEuler(const Matrix& m)
+{
+	float pitch, yaw, roll;
+	static constexpr float PI_F = 3.141592F;
+
+	// https://www.geometrictools.com/Documentation/EulerAngles.pdf
+	if (m._23 < 1.0f)
+	{
+		if (m._23 > -1.0f)
+		{
+			pitch = (float)asin(-m._23);
+			yaw = (float)atan2(m._13, m._33);
+			roll = (float)atan2(m._21, m._22);
+		}
+		else // r12 = -1, not a unique solution roll + yaw = atan(-r01, r00) 
+		{
+			pitch = PI_F / 2.0f;
+			yaw = (float)-atan2(-m._12, m._11);
+			roll = 0.0f;
+		}
+	}
+	else // not a unique solution roll - yaw = atan(-r01, r00) 
+	{
+		pitch = -PI_F / 2.0f;
+		yaw = (float)atan2(-m._12, m._11);
+		roll = 0.0f;
+	}
+	return { pitch, yaw, roll };
+}
+
 Matrix Matrix::operator*(const Matrix& rhs) const
 {
 	Matrix m;

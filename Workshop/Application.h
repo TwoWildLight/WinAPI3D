@@ -3,16 +3,16 @@
 #include <utility/Timer.h>
 #include <rendering/IndexedTriangleList.h>
 #include <rendering/Rasterizer.h>
-#include <utility/Matrix.h>
+#include <components/Camera.h>
 
 class Application : public Window
 {
 private:
 	Timer timer;
+	Camera camera;
 
 	Rasterizer rasterizer;
 	IndexedTriangleList cube;
-	Vector3 ang;
 
 public:
 	Application();

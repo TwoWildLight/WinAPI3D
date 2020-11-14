@@ -35,6 +35,11 @@ public:
 	static Matrix Translation(const Vector3& v);
 	static Matrix Translation(float x, float y, float z);
 
+	static Matrix LookAt(const Vector3& pos, const Vector3& dir, const Vector3& up);
+	static Matrix Projection(float fov, float aspectRatio, float near, float far);
+
+	static Vector3 ToEuler(const Matrix& m);
+
 	Matrix operator *(const Matrix& rhs) const;
 	Matrix& operator *=(const Matrix& rhs);
 };
