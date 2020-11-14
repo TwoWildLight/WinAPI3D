@@ -2,7 +2,6 @@
 #include <core/Window.h>
 #include <utility/Timer.h>
 #include <components/Camera.h>
-#include <rendering/Pipeline.h>
 #include "rendering/VertexShader.h"
 
 class Application : public Window
@@ -11,9 +10,7 @@ private:
 	Timer timer;
 	Camera camera;
 
-	Pipeline pipeline;
-
-	VertexShader defaultShader;
+	VertexShader defaultVS;
 
 	std::unique_ptr<IndexedTriangleList> pCube;
 

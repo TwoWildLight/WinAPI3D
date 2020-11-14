@@ -175,8 +175,10 @@
     <ClCompile Include="src\core\Window.cpp" />
     <ClCompile Include="src\rendering\DynamicConstant.cpp" />
     <ClCompile Include="src\rendering\DynamicVertex.cpp" />
+    <ClCompile Include="src\rendering\OutputMerger.cpp" />
     <ClCompile Include="src\rendering\Pipeline.cpp" />
     <ClCompile Include="src\rendering\Rasterizer.cpp" />
+    <ClCompile Include="src\rendering\ScreenTransformer.cpp" />
     <ClCompile Include="src\rendering\Texture.cpp" />
     <ClCompile Include="src\utility\Matrix.cpp" />
     <ClCompile Include="src\utility\Vector.cpp" />
@@ -195,6 +197,7 @@
     <ClInclude Include="src\rendering\DynamicConstant.h" />
     <ClInclude Include="src\rendering\DynamicVertex.h" />
     <ClInclude Include="src\rendering\IndexedTriangleList.h" />
+    <ClInclude Include="src\rendering\OutputMerger.h" />
     <ClInclude Include="src\rendering\ScreenTransformer.h" />
     <ClInclude Include="src\rendering\Pipeline.h" />
     <ClInclude Include="src\rendering\Rasterizer.h" />

@@ -6,16 +6,14 @@
 Application::Application()
 	:
 	Window((wchar_t*)L"Workshop", 1280u, 720u),
-	camera(GetGFX(), { 0.0f, 0.0f, -3.0f }),
-	pipeline(GetGFX())
+	camera(GetGFX(), { 0.0f, 0.0f, -3.0f })
 {
 	DisableCursor();
 
 	camera.SetType(Camera::Type::FREE_VIEW);
-	camera.SetFOV(PI_F / 2.0f);
 
-	pipeline.GetContext().SetTopology(Context::Topology::LINE_LIST);
-	pipeline.BindVertexShader(&defaultShader);
+	GetGFX().SetTopology(Context::Topology::LINE_LIST);
+	GetGFX().BindVertexShader(&defaultVS);
 
 	pCube = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
 }
@@ -47,10 +45,10 @@ void Application::Update(float fDeltaTime)
 	auto mProj = camera.GetProjectionMatrix();
 	tcbuf.SetViewMatrix(mView);
 	tcbuf.SetViewProjectionMatrix(mView * mProj);
-	defaultShader.SetTransformCBuf(tcbuf);
+	defaultVS.SetTransformCBuf(tcbuf);
 }
 
 void Application::Render(float fDeltaTime)
 {
-	pipeline.Draw(*pCube);
+	GetGFX().Render(*pCube);
 }

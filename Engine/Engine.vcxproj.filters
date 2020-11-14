@@ -66,6 +66,12 @@
     <ClCompile Include="src\rendering\DynamicVertex.cpp">
       <Filter>src\rendering</Filter>
     </ClCompile>
+    <ClCompile Include="src\rendering\OutputMerger.cpp">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rendering\ScreenTransformer.cpp">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Keyboard.h">
@@ -135,6 +141,9 @@
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
     <ClInclude Include="src\rendering\TransformCBuf.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\OutputMerger.h">
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
   </ItemGroup>

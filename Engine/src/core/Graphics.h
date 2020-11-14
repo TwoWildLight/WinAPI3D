@@ -1,6 +1,7 @@
 #pragma once
 #include "LightWindows.h"
-#include "../rendering/Texture.h"
+#include "../rendering/Pipeline.h"
+#include <memory>
 
 class Graphics final
 {
@@ -8,18 +9,17 @@ private:
 	HDC hMainDC;
 	HDC hBufferDC;
 
-	std::unique_ptr<Texture> pRenderTargetView;
+	std::unique_ptr<Pipeline> pPipeline;
 
+private:
 	UINT screenWidth;
 	UINT screenHeight;
 
-	UINT resolutionWidth;
-	UINT resolutionHeight;
-
-	const float resolutionScale = 1.0f;
+	UINT resWidth;
+	UINT resHeight;
 
 public:
-	Graphics(HWND hWnd, UINT w, UINT h);
+	Graphics(HWND hWnd, UINT w, UINT h, float scale = 1.0f);
 	~Graphics() = default;
 
 	Graphics(const Graphics&) = delete;
@@ -30,8 +30,10 @@ public:
 	void BeginFrame();
 	void EndFrame();
 
+	void SetTopology(Context::Topology topology);
+	void BindVertexShader(VertexShader* pVS);
+	void Render(IndexedTriangleList model);
+
 	UINT GetWidth() const;
 	UINT GetHeight() const;
-
-	void PutPixel(UINT x, UINT y, const Vector3& c);
 };

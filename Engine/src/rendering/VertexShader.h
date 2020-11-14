@@ -27,10 +27,9 @@ public:
 	{
 		using Type = DVTX::VertexLayout::Element::Type;
 		auto& sv_pos = vertex.Attr<Vector4>(Type::POSITION4D);
-		sv_pos.w = 1.0f;
-		auto& pos = vertex.Attr<Vector4>(Type::POSITION3D);
-
-		sv_pos = pos * transformCBuf.GetViewProjectionMatrix();
+		auto& pos = vertex.Attr<Vector3>(Type::POSITION3D);
+		sv_pos = { pos.x, pos.y, pos.z, 1.0f };
+		sv_pos *= transformCBuf.GetViewProjectionMatrix();
 		return vertex;
 	}
 };

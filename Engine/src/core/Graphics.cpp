@@ -1,6 +1,6 @@
 #include "Graphics.h"
 
-Graphics::Graphics(HWND hWnd, UINT w, UINT h)
+Graphics::Graphics(HWND hWnd, UINT w, UINT h, float scale)
 	:
 	screenWidth(w),
 	screenHeight(h)
@@ -8,36 +8,46 @@ Graphics::Graphics(HWND hWnd, UINT w, UINT h)
 	hMainDC = GetDC(hWnd);
 	hBufferDC = CreateCompatibleDC(hMainDC);
 
-	resolutionWidth = UINT((float)screenWidth * resolutionScale);
-	resolutionHeight = UINT((float)screenHeight * resolutionScale);
+	resWidth = UINT((float)screenWidth * scale);
+	resHeight = UINT((float)screenHeight * scale);
 
-	pRenderTargetView = std::make_unique<Texture>(resolutionWidth, resolutionHeight);
+	pPipeline = std::make_unique<Pipeline>(*this);
 }
 
 void Graphics::BeginFrame()
 {
-	pRenderTargetView->Clear();
+	pPipeline->Clear();
 }
 
 void Graphics::EndFrame()
 {
-	HBITMAP bitmapView = pRenderTargetView->GenerateBitmap();
-	SelectObject(hBufferDC, bitmapView);
-	StretchBlt(hMainDC, 0, 0, screenWidth, screenHeight, hBufferDC, 0, 0, resolutionWidth, resolutionHeight, SRCCOPY);
-	DeleteObject(bitmapView);
+	HBITMAP bitmap = pPipeline->GetOutputMerger().GetBitmapRTV();
+	SelectObject(hBufferDC, bitmap);
+	StretchBlt(hMainDC, 0, 0, screenWidth, screenHeight, hBufferDC, 0, 0, resWidth, resHeight, SRCCOPY);
+	DeleteObject(bitmap);
+}
+
+void Graphics::SetTopology(Context::Topology topology)
+{
+	pPipeline->GetContext().SetTopology(topology);
+}
+
+void Graphics::BindVertexShader(VertexShader* pVS)
+{
+	*pPipeline->GetVertexShader() = pVS;
+}
+
+void Graphics::Render(IndexedTriangleList model)
+{
+	pPipeline->Render(model);
 }
 
 UINT Graphics::GetWidth() const
 {
-	return resolutionWidth;
+	return resWidth;
 }
 
 UINT Graphics::GetHeight() const
 {
-	return resolutionHeight;
-}
-
-void Graphics::PutPixel(UINT x, UINT y, const Vector3& c)
-{
-	pRenderTargetView->PutPixel(x, y, c);
+	return resHeight;
 }
