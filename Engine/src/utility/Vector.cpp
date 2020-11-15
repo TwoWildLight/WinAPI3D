@@ -159,10 +159,10 @@ Vector3& Vector3::operator*=(const Matrix& m)
 Vector4 Vector4::operator*(const Matrix& m) const
 {
     return{
-        m.cells[0][0] * x + m.cells[1][0] * y + m.cells[2][0] * z + m.cells[3][0],
-        m.cells[0][1] * x + m.cells[1][1] * y + m.cells[2][1] * z + m.cells[3][1],
-        m.cells[0][2] * x + m.cells[1][2] * y + m.cells[2][2] * z + m.cells[3][2],
-        m.cells[0][3] * x + m.cells[1][3] * y + m.cells[2][3] * z + m.cells[3][3]
+        m.cells[0][0] * x + m.cells[1][0] * y + m.cells[2][0] * z + m.cells[3][0] * w,
+        m.cells[0][1] * x + m.cells[1][1] * y + m.cells[2][1] * z + m.cells[3][1] * w,
+        m.cells[0][2] * x + m.cells[1][2] * y + m.cells[2][2] * z + m.cells[3][2] * w,
+        m.cells[0][3] * x + m.cells[1][3] * y + m.cells[2][3] * z + m.cells[3][3] * w
     };
 }
 

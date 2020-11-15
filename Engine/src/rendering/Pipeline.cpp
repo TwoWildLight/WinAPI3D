@@ -40,10 +40,19 @@ void Pipeline::Render(IndexedTriangleList itList)
 {
 	for (size_t i = 0; i < itList.vb.Size(); i++)
 	{
-		screenTransformer.Transform(gfx, (*pVertexShader)(itList.vb[i]));
+		(*pVertexShader)(itList.vb[i]);
 	}
 
 	auto triangles = tessellator.Tessellate(itList);
+
+	/* ---culling goes here--- */
+
+	/* ------------------------- */
+
+	for (size_t i = 0; i < itList.vb.Size(); i++)
+	{
+		screenTransformer.Transform(gfx, itList.vb[i]);
+	}
 
 	switch (context.GetTopology())
 	{

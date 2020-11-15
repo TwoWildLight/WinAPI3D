@@ -6,10 +6,12 @@ class VertexShader : public BaseShader
 public:
 	virtual DVTX::Vertex operator ()(DVTX::Vertex vertex)
 	{
-		auto& sv_pos = vertex.Attr<Vector4>(VertexType::POSITION4D);
 		auto& pos = vertex.Attr<Vector3>(VertexType::POSITION3D);
-		sv_pos = { pos.x, pos.y, pos.z, 1.0f };
+		Vector4 sv_pos(pos.x, pos.y, pos.z, 1.0f);
+
 		sv_pos *= transformCBuf.GetViewProjectionMatrix();
+		pos = { sv_pos.x, sv_pos.y, sv_pos.z };
+
 		return vertex;
 	}
 };

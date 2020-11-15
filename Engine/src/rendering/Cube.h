@@ -9,8 +9,7 @@ public:
 		using Type = DVTX::VertexLayout::Element::Type;
 
 		DVTX::VertexBuffer vb(DVTX::VertexLayout{}
-			.Append(Type::POSITION3D)
-			.Append(Type::NORMAL), 
+			.Append(Type::POSITION3D), 
 			24u
 		);
 
