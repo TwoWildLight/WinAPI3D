@@ -11,7 +11,7 @@ private:
 
 public:
 	void DrawLine(PixelShader& ps, OutputMerger& om, PNVertex& from, PNVertex& to);
-	void DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<PNVertex>& t);
+	void DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<PNVertex> t);
 
 private:
 	void DrawTriangle(PixelShader& ps, OutputMerger& om, PNVertex& v0, PNVertex& v1, PNVertex& v2);

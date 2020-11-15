@@ -2,7 +2,6 @@
 #include "Context.h"
 #include "VertexShader.h"
 #include "ScreenTransformer.h"
-#include "Tessellator.h"
 #include "Rasterizer.h"
 #include "PixelShader.h"
 #include "OutputMerger.h"
@@ -15,7 +14,6 @@ private:
 
 	VertexShader* pVertexShader;
 	ScreenTransformer screenTransformer;
-	Tessellator tessellator;
 	Rasterizer rasterizer;
 	PixelShader* pPixelShader;
 	OutputMerger outputMerger;

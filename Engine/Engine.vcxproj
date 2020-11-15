@@ -200,7 +200,6 @@
     <ClInclude Include="src\rendering\ScreenTransformer.h" />
     <ClInclude Include="src\rendering\Pipeline.h" />
     <ClInclude Include="src\rendering\Rasterizer.h" />
-    <ClInclude Include="src\rendering\Tessellator.h" />
     <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\rendering\TransformCBuf.h" />
     <ClInclude Include="src\rendering\Vertex.h" />

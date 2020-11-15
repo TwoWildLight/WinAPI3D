@@ -15,6 +15,12 @@ public:
 	std::vector<PNVertex> vertices;
 	std::vector<unsigned int> indices;
 
+	PNVertex& operator [](size_t index)
+	{
+		return vertices[indices[index]];
+	}
+
+public:
 	void GenerateIndividualFaceNormals()
 	{
 		for (size_t i = 0; i < indices.size(); i += 3)
