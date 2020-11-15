@@ -72,6 +72,15 @@ public:
 	Vector4() : Vector3(), w(0.0f) {}
 	Vector4(float x, float y, float z, float w) : Vector3(x, y, z), w(w) {}
 
+	Vector4 operator +(const Vector4& rhs) const;
+	Vector4& operator +=(const Vector4& rhs);
+	Vector4 operator -(const Vector4& rhs) const;
+	Vector4& operator -=(const Vector4& rhs);
+	Vector4 operator *(const float factor) const;
+	Vector4& operator *=(const float factor);
+	Vector4 operator /(const float factor) const;
+	Vector4& operator /=(const float factor);
+
 	Vector4 operator *(const Matrix& m) const;
 	Vector4& operator *=(const Matrix& m);
 };

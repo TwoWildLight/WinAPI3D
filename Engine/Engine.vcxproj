@@ -191,13 +191,14 @@
     <ClInclude Include="src\core\LightWindows.h" />
     <ClInclude Include="src\core\Mouse.h" />
     <ClInclude Include="src\core\Window.h" />
-    <ClInclude Include="src\rendering\ConstantBuffer.h" />
+    <ClInclude Include="src\rendering\BaseShader.h" />
     <ClInclude Include="src\rendering\Context.h" />
     <ClInclude Include="src\rendering\Cube.h" />
     <ClInclude Include="src\rendering\DynamicConstant.h" />
     <ClInclude Include="src\rendering\DynamicVertex.h" />
     <ClInclude Include="src\rendering\IndexedTriangleList.h" />
     <ClInclude Include="src\rendering\OutputMerger.h" />
+    <ClInclude Include="src\rendering\PixelShader.h" />
     <ClInclude Include="src\rendering\ScreenTransformer.h" />
     <ClInclude Include="src\rendering\Pipeline.h" />
     <ClInclude Include="src\rendering\Rasterizer.h" />

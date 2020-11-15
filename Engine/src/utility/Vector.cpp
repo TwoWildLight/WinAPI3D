@@ -59,7 +59,7 @@ Vector2& Vector2::operator*=(const float factor)
 
 Vector2 Vector2::operator/(const float factor) const
 { 
-    return { x / factor, y / factor };
+    return *this * (1.0f / factor);
 }
 
 Vector2& Vector2::operator/=(const float factor)
@@ -134,7 +134,7 @@ Vector3& Vector3::operator*=(const float factor)
 
 Vector3 Vector3::operator/(const float factor) const
 {
-    return { x / factor, y / factor, z / factor };
+    return *this * (1.0f / factor);
 }
 
 Vector3& Vector3::operator/=(const float factor)
@@ -170,4 +170,44 @@ Vector4& Vector4::operator*=(const Matrix& m)
 {
  
     return *this = *this * m;
+}
+
+Vector4 Vector4::operator+(const Vector4& rhs) const
+{
+    return { x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w };
+}
+
+Vector4& Vector4::operator+=(const Vector4& rhs)
+{
+    return *this = *this + rhs;
+}
+
+Vector4 Vector4::operator-(const Vector4& rhs) const
+{
+    return { x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w };
+}
+
+Vector4& Vector4::operator-=(const Vector4& rhs)
+{
+    return *this = *this - rhs;
+}
+
+Vector4 Vector4::operator*(const float factor) const
+{
+    return { x * factor, y * factor, z * factor, w * factor };
+}
+
+Vector4& Vector4::operator*=(const float factor)
+{
+    return *this = *this * factor;
+}
+
+Vector4 Vector4::operator/(const float factor) const
+{
+    return *this * (1.0f / factor);
+}
+
+Vector4& Vector4::operator/=(const float factor)
+{
+    return *this = *this / factor;
 }

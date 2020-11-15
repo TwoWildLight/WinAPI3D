@@ -1,33 +1,13 @@
 #pragma once
-#include "DynamicVertex.h"
-#include "DynamicConstant.h"
-#include "TransformCBuf.h"
-#include "../utility/Vector.h"
-#include <array>
+#include "BaseShader.h"
 
-class VertexShader
+class VertexShader : public BaseShader
 {
-private:
-	TransformCBuf transformCBuf;
-	std::array<DCST::ConstantBuffer*, 5u> cbuffers;
-
 public:
-	void SetTransformCBuf(TransformCBuf tcb)
-	{
-		transformCBuf = std::move(tcb);
-	}
-
-	void SetConstantBuffer(DCST::ConstantBuffer* pCB, UINT slot = 0u)
-	{
-		assert(slot < 5u);
-		cbuffers[slot] = pCB;
-	}
-
 	virtual DVTX::Vertex operator ()(DVTX::Vertex vertex)
 	{
-		using Type = DVTX::VertexLayout::Element::Type;
-		auto& sv_pos = vertex.Attr<Vector4>(Type::POSITION4D);
-		auto& pos = vertex.Attr<Vector3>(Type::POSITION3D);
+		auto& sv_pos = vertex.Attr<Vector4>(VertexType::POSITION4D);
+		auto& pos = vertex.Attr<Vector3>(VertexType::POSITION3D);
 		sv_pos = { pos.x, pos.y, pos.z, 1.0f };
 		sv_pos *= transformCBuf.GetViewProjectionMatrix();
 		return vertex;

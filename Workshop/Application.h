@@ -2,7 +2,6 @@
 #include <core/Window.h>
 #include <utility/Timer.h>
 #include <components/Camera.h>
-#include "rendering/VertexShader.h"
 
 class Application : public Window
 {
@@ -11,6 +10,7 @@ private:
 	Camera camera;
 
 	VertexShader defaultVS;
+	PixelShader defaultPS;
 
 	std::unique_ptr<IndexedTriangleList> pCube;
 

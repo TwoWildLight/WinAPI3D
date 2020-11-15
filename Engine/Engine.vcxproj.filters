@@ -128,9 +128,6 @@
     <ClInclude Include="src\rendering\DynamicConstant.h">
       <Filter>src\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\rendering\ConstantBuffer.h">
-      <Filter>src\rendering\pipeline</Filter>
-    </ClInclude>
     <ClInclude Include="src\rendering\ScreenTransformer.h">
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
@@ -144,6 +141,12 @@
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
     <ClInclude Include="src\rendering\OutputMerger.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\PixelShader.h">
+      <Filter>src\rendering\pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\BaseShader.h">
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
   </ItemGroup>

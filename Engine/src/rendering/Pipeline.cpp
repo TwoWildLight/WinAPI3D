@@ -8,6 +8,7 @@ Pipeline::Pipeline(Graphics& gfx)
 	outputMerger(gfx.GetWidth(), gfx.GetHeight())
 {
 	pVertexShader = nullptr;
+	pPixelShader = nullptr;
 }
 
 Context& Pipeline::GetContext()
@@ -15,9 +16,14 @@ Context& Pipeline::GetContext()
 	return context;
 }
 
-VertexShader** Pipeline::GetVertexShader()
+VertexShader** Pipeline::GetVertexShaderAddr()
 {
 	return &pVertexShader;
+}
+
+PixelShader** Pipeline::GetPixelShaderAddr()
+{
+	return &pPixelShader;
 }
 
 OutputMerger& Pipeline::GetOutputMerger()
@@ -44,9 +50,9 @@ void Pipeline::Render(IndexedTriangleList itList)
 	case Context::Topology::LINE_LIST:
 		for (auto& t : triangles)
 		{
-			rasterizer.DrawLine(outputMerger, t.v0, t.v1);
-			rasterizer.DrawLine(outputMerger, t.v1, t.v2);
-			rasterizer.DrawLine(outputMerger, t.v2, t.v0);
+			rasterizer.DrawLine(*pPixelShader, outputMerger, t.v0, t.v1);
+			rasterizer.DrawLine(*pPixelShader, outputMerger, t.v1, t.v2);
+			rasterizer.DrawLine(*pPixelShader, outputMerger, t.v2, t.v0);
 		}
 		break;
 	default: assert(0 && "Bad Topology Type"); break;

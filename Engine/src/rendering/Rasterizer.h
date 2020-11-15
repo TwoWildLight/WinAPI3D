@@ -2,14 +2,11 @@
 #include "DynamicVertex.h"
 #include "../utility/Vector.h"
 
+class PixelShader;
 class OutputMerger;
 
 class Rasterizer
 {
-private:
-	// temporary code
-	const Vector3 defaultColor = { 1.0f ,0.0f, 0.34f };
-
 public:
-	void DrawLine(OutputMerger& om, const DVTX::Vertex& from, const DVTX::Vertex& to);
+	void DrawLine(PixelShader& ps, OutputMerger& om, DVTX::Vertex from, DVTX::Vertex to);
 };

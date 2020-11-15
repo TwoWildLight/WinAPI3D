@@ -4,6 +4,7 @@
 #include "Tessellator.h"
 #include "ScreenTransformer.h"
 #include "Rasterizer.h"
+#include "PixelShader.h"
 #include "OutputMerger.h"
 
 class Pipeline
@@ -11,10 +12,12 @@ class Pipeline
 private:
 	Graphics& gfx;
 	Context context;
+
 	VertexShader* pVertexShader;
 	Tessellator tessellator;
 	ScreenTransformer screenTransformer;
 	Rasterizer rasterizer;
+	PixelShader* pPixelShader;
 	OutputMerger outputMerger;
 
 public:
@@ -22,7 +25,8 @@ public:
 
 public:
 	Context& GetContext();
-	VertexShader** GetVertexShader();
+	VertexShader** GetVertexShaderAddr();
+	PixelShader** GetPixelShaderAddr();
 	OutputMerger& GetOutputMerger();
 
 	void Clear();

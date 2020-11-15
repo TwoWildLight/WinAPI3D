@@ -34,7 +34,12 @@ void Graphics::SetTopology(Context::Topology topology)
 
 void Graphics::BindVertexShader(VertexShader* pVS)
 {
-	*pPipeline->GetVertexShader() = pVS;
+	*(pPipeline->GetVertexShaderAddr()) = pVS;
+}
+
+void Graphics::BindPixelShader(PixelShader* pPS)
+{
+	*(pPipeline->GetPixelShaderAddr()) = pPS;
 }
 
 void Graphics::Render(IndexedTriangleList model)

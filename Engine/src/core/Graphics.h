@@ -32,6 +32,7 @@ public:
 
 	void SetTopology(Context::Topology topology);
 	void BindVertexShader(VertexShader* pVS);
+	void BindPixelShader(PixelShader* pPS);
 	void Render(IndexedTriangleList model);
 
 	UINT GetWidth() const;

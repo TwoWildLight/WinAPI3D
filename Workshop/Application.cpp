@@ -14,6 +14,7 @@ Application::Application()
 
 	GetGFX().SetTopology(Context::Topology::LINE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
+	GetGFX().BindPixelShader(&defaultPS);
 
 	pCube = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
 }
