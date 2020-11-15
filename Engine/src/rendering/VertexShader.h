@@ -4,13 +4,19 @@
 class VertexShader : public BaseShader
 {
 public:
-	virtual DVTX::Vertex operator ()(DVTX::Vertex vertex)
+	virtual PNVertex& operator ()(PNVertex& vertex) abstract;
+};
+
+class DefaultVertexShader : public VertexShader
+{
+public:
+	virtual PNVertex& operator()(PNVertex& vertex) override
 	{
-		auto& pos = vertex.Attr<Vector3>(VertexType::POSITION3D);
-		Vector4 sv_pos(pos.x, pos.y, pos.z, 1.0f);
+		Vector4 sv_pos(vertex.pos.x, vertex.pos.y, vertex.pos.z, 1.0f);
 
 		sv_pos *= transformCBuf.GetViewProjectionMatrix();
-		pos = { sv_pos.x, sv_pos.y, sv_pos.z };
+		vertex.pos = { sv_pos.x, sv_pos.y, sv_pos.z };
+		vertex.n *= transformCBuf.GetViewMatrix();
 
 		return vertex;
 	}

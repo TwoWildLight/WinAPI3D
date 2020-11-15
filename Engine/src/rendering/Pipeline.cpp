@@ -38,21 +38,12 @@ void Pipeline::Clear()
 
 void Pipeline::Render(IndexedTriangleList itList)
 {
-	for (size_t i = 0; i < itList.vb.Size(); i++)
+	for (size_t i = 0; i < itList.vertices.size(); i++)
 	{
-		(*pVertexShader)(itList.vb[i]);
+		screenTransformer.Transform(gfx, (*pVertexShader)(itList.vertices[i]));
 	}
 
 	auto triangles = tessellator.Tessellate(itList);
-
-	/* ---culling goes here--- */
-
-	/* ------------------------- */
-
-	for (size_t i = 0; i < itList.vb.Size(); i++)
-	{
-		screenTransformer.Transform(gfx, itList.vb[i]);
-	}
 
 	switch (context.GetTopology())
 	{
@@ -62,6 +53,12 @@ void Pipeline::Render(IndexedTriangleList itList)
 			rasterizer.DrawLine(*pPixelShader, outputMerger, t.v0, t.v1);
 			rasterizer.DrawLine(*pPixelShader, outputMerger, t.v1, t.v2);
 			rasterizer.DrawLine(*pPixelShader, outputMerger, t.v2, t.v0);
+		}
+		break;
+	case Context::Topology::TRIANGLE_LIST:
+		for (auto& t : triangles)
+		{
+			rasterizer.DrawTriangle(*pPixelShader, outputMerger, t);
 		}
 		break;
 	default: assert(0 && "Bad Topology Type"); break;

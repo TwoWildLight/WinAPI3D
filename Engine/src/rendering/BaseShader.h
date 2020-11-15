@@ -1,6 +1,6 @@
 #pragma once
 #include "TransformCBuf.h"
-#include "DynamicVertex.h"
+#include "Vertex.h"
 #include "DynamicConstant.h"
 #include "../utility/Vector.h"
 #include <array>
@@ -8,7 +8,6 @@
 class BaseShader
 {
 protected:
-	using VertexType = DVTX::VertexLayout::Element::Type;
 	using ConstantType = DCST::ConstantLayout::Element::Type;
 
 protected:

@@ -12,11 +12,12 @@ Application::Application()
 
 	camera.SetType(Camera::Type::FREE_VIEW);
 
-	GetGFX().SetTopology(Context::Topology::LINE_LIST);
+	GetGFX().SetTopology(Context::Topology::TRIANGLE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
-	GetGFX().BindPixelShader(&defaultPS);
+	GetGFX().BindPixelShader(&facePixelShader);
 
 	pCube = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
+	pCube->GenerateIndividualFaceNormals();
 }
 
 void Application::Initiate()

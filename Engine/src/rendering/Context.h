@@ -7,7 +7,7 @@ public:
 	{
 		NONE,
 		LINE_LIST,
-		//TRIANGLE_LIST,
+		TRIANGLE_LIST,
 	};
 
 private:

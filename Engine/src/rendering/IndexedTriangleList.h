@@ -1,5 +1,5 @@
 #pragma once
-#include "DynamicVertex.h"
+#include "Vertex.h"
 #include "../utility/Vector.h"
 #include <vector>
 
@@ -12,27 +12,18 @@ struct Triangle
 class IndexedTriangleList
 {
 public:
-	DVTX::VertexBuffer vb;
+	std::vector<PNVertex> vertices;
 	std::vector<unsigned int> indices;
 
-public:
-	void GenerateIndependentNormals()
+	void GenerateIndividualFaceNormals()
 	{
-		using Type = DVTX::VertexLayout::Element::Type;
 		for (size_t i = 0; i < indices.size(); i += 3)
 		{
-			auto v0 = vb[indices[i]];
-			auto v1 = vb[indices[i + 1]];
-			auto v2 = vb[indices[i + 2]];
-			const auto p0 = (v0.Attr<Vector3>(Type::POSITION3D));
-			const auto p1 = (v1.Attr<Vector3>(Type::POSITION3D));
-			const auto p2 = (v2.Attr<Vector3>(Type::POSITION3D));
+			auto& v0 = vertices[indices[i + 0]];
+			auto& v1 = vertices[indices[i + 1]];
+			auto& v2 = vertices[indices[i + 2]];
 
-			const auto n = Vector3::Normalize(Vector3::Cross((p1 - p0), (p2 - p0)));
-
-			v0.Attr<Vector3>(Type::NORMAL) = n;
-			v1.Attr<Vector3>(Type::NORMAL) = n;
-			v2.Attr<Vector3>(Type::NORMAL) = n;
+			v0.n = v1.n = v2.n = Vector3::Cross(v1.pos - v0.pos, v2.pos - v0.pos);
 		}
 	}
 };

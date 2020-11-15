@@ -6,40 +6,35 @@ class Cube
 public:
 	static IndexedTriangleList CreateCube(float size = 1.0f)
 	{
-		using Type = DVTX::VertexLayout::Element::Type;
-
-		DVTX::VertexBuffer vb(DVTX::VertexLayout{}
-			.Append(Type::POSITION3D), 
-			24u
-		);
+		std::vector<PNVertex> vertices(24);
 
 		const float side = size / 2.0f;
-		vb[0].Attr<Vector3>(Type::POSITION3D) = { -side, side, -side }; // near
-		vb[1].Attr<Vector3>(Type::POSITION3D) = { side, side, -side };
-		vb[2].Attr<Vector3>(Type::POSITION3D) = { side, -side, -side };
-		vb[3].Attr<Vector3>(Type::POSITION3D) = { -side, -side, -side };
-		vb[4].Attr<Vector3>(Type::POSITION3D) = { -side, side, side }; // left
-		vb[5].Attr<Vector3>(Type::POSITION3D) = { -side, side, -side };
-		vb[6].Attr<Vector3>(Type::POSITION3D) = { -side, -side, -side };
-		vb[7].Attr<Vector3>(Type::POSITION3D) = { -side, -side, side };
-		vb[8].Attr<Vector3>(Type::POSITION3D) = { side, side, side }; // far
-		vb[9].Attr<Vector3>(Type::POSITION3D) = { -side, side, side };
-		vb[10].Attr<Vector3>(Type::POSITION3D) = { -side, -side, side };
-		vb[11].Attr<Vector3>(Type::POSITION3D) = { side, -side, side };
-		vb[12].Attr<Vector3>(Type::POSITION3D) = { side, side, -side }; // right
-		vb[13].Attr<Vector3>(Type::POSITION3D) = { side, side, side };
-		vb[14].Attr<Vector3>(Type::POSITION3D) = { side, -side, side };
-		vb[15].Attr<Vector3>(Type::POSITION3D) = { side, -side, -side };
-		vb[16].Attr<Vector3>(Type::POSITION3D) = { -side, side, side }; // top
-		vb[17].Attr<Vector3>(Type::POSITION3D) = { side, side, side };
-		vb[18].Attr<Vector3>(Type::POSITION3D) = { side, side, -side };
-		vb[19].Attr<Vector3>(Type::POSITION3D) = { -side, side, -side };
-		vb[20].Attr<Vector3>(Type::POSITION3D) = { side, -side, side }; // bottom
-		vb[21].Attr<Vector3>(Type::POSITION3D) = { -side, -side, side };
-		vb[22].Attr<Vector3>(Type::POSITION3D) = { -side, -side, -side };
-		vb[23].Attr<Vector3>(Type::POSITION3D) = { side, -side, -side };
+		vertices[0].pos = { -side, side, -side }; // near
+		vertices[1].pos = { side, side, -side };
+		vertices[2].pos = { side, -side, -side };
+		vertices[3].pos = { -side, -side, -side };
+		vertices[4].pos = { -side, side, side }; // left
+		vertices[5].pos = { -side, side, -side };
+		vertices[6].pos = { -side, -side, -side };
+		vertices[7].pos = { -side, -side, side };
+		vertices[8].pos = { side, side, side }; // far
+		vertices[9].pos = { -side, side, side };
+		vertices[10].pos = { -side, -side, side };
+		vertices[11].pos = { side, -side, side };
+		vertices[12].pos = { side, side, -side }; // right
+		vertices[13].pos = { side, side, side };
+		vertices[14].pos = { side, -side, side };
+		vertices[15].pos = { side, -side, -side };
+		vertices[16].pos = { -side, side, side }; // top
+		vertices[17].pos = { side, side, side };
+		vertices[18].pos = { side, side, -side };
+		vertices[19].pos = { -side, side, -side };
+		vertices[20].pos = { side, -side, side }; // bottom
+		vertices[21].pos = { -side, -side, side };
+		vertices[22].pos = { -side, -side, -side };
+		vertices[23].pos = { side, -side, -side };
 
-		return { std::move(vb), {
+		return { std::move(vertices), {
 			0,1,2,2,3,0,
 			4,5,6,6,7,4,
 			8,9,10,10,11,8,

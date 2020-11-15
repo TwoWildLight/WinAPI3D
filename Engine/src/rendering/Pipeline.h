@@ -1,8 +1,8 @@
 #pragma once
 #include "Context.h"
 #include "VertexShader.h"
-#include "Tessellator.h"
 #include "ScreenTransformer.h"
+#include "Tessellator.h"
 #include "Rasterizer.h"
 #include "PixelShader.h"
 #include "OutputMerger.h"
@@ -14,8 +14,8 @@ private:
 	Context context;
 
 	VertexShader* pVertexShader;
-	Tessellator tessellator;
 	ScreenTransformer screenTransformer;
+	Tessellator tessellator;
 	Rasterizer rasterizer;
 	PixelShader* pPixelShader;
 	OutputMerger outputMerger;

@@ -1,10 +1,10 @@
 #pragma once
-#include "DynamicVertex.h"
+#include "Vertex.h"
 
 class Graphics;
 
 class ScreenTransformer
 {
 public:
-	void Transform(const Graphics& gfx, DVTX::Vertex v);
+	void Transform(const Graphics& gfx, PNVertex& v);
 };

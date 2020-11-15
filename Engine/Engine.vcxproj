@@ -174,7 +174,6 @@
     <ClCompile Include="src\core\Mouse.cpp" />
     <ClCompile Include="src\core\Window.cpp" />
     <ClCompile Include="src\rendering\DynamicConstant.cpp" />
-    <ClCompile Include="src\rendering\DynamicVertex.cpp" />
     <ClCompile Include="src\rendering\OutputMerger.cpp" />
     <ClCompile Include="src\rendering\Pipeline.cpp" />
     <ClCompile Include="src\rendering\Rasterizer.cpp" />
@@ -195,7 +194,6 @@
     <ClInclude Include="src\rendering\Context.h" />
     <ClInclude Include="src\rendering\Cube.h" />
     <ClInclude Include="src\rendering\DynamicConstant.h" />
-    <ClInclude Include="src\rendering\DynamicVertex.h" />
     <ClInclude Include="src\rendering\IndexedTriangleList.h" />
     <ClInclude Include="src\rendering\OutputMerger.h" />
     <ClInclude Include="src\rendering\PixelShader.h" />
@@ -205,6 +203,7 @@
     <ClInclude Include="src\rendering\Tessellator.h" />
     <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\rendering\TransformCBuf.h" />
+    <ClInclude Include="src\rendering\Vertex.h" />
     <ClInclude Include="src\rendering\VertexShader.h" />
     <ClInclude Include="src\utility\Matrix.h" />
     <ClInclude Include="src\utility\Timer.h" />
