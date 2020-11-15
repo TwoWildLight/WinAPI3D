@@ -73,8 +73,6 @@ size_t Texture::GetHeight() const
 
 void Texture::PutPixel(UINT x, UINT y, UINT c)
 {
-	size_t target = GetWidth() * y + x;
-	if (x >= GetWidth() || target < 0.0f || target > GetWidth() * GetHeight()) return;
 	*reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = c;
 }
 

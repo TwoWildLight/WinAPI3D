@@ -34,6 +34,7 @@ OutputMerger& Pipeline::GetOutputMerger()
 void Pipeline::Clear()
 {
 	outputMerger.ClearRenderTarget();
+	outputMerger.ClearDepthBuffer();
 }
 
 void Pipeline::Render(IndexedTriangleList itList)

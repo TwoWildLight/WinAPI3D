@@ -16,8 +16,18 @@ Application::Application()
 	GetGFX().BindVertexShader(&defaultVS);
 	GetGFX().BindPixelShader(&facePixelShader);
 
-	pCube = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
-	pCube->GenerateIndividualFaceNormals();
+	pCube0 = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
+	pCube0->GenerateIndividualFaceNormals();
+	pCube1 = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
+	pCube1->GenerateIndividualFaceNormals();
+
+	float ang = PI_F / 4.0f;
+	auto m = Matrix::Rotation({ ang, ang, ang });
+	for (auto& v : pCube1->vertices)
+	{
+		v.pos *= m;
+		v.n *= m;
+	}
 }
 
 void Application::Initiate()
@@ -52,5 +62,6 @@ void Application::Update(float fDeltaTime)
 
 void Application::Render(float fDeltaTime)
 {
-	GetGFX().Render(*pCube);
+	GetGFX().Render(*pCube0);
+	GetGFX().Render(*pCube1);
 }

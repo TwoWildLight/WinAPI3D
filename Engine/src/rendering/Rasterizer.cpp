@@ -20,7 +20,7 @@ void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, PNVertex& from, PNV
 		{
 			if ((xTo - xFrom) / (float)length * to.sv_pos.z < 0.0f) continue;
 			float y = slopeM * xFrom + offsetB;
-			om.PutPixel(xFrom, (int)y, ps(from));
+			om.PutPixel(xFrom, (int)y, 0.0f, ps(from));
 		}
 	}
 	else {
@@ -33,7 +33,7 @@ void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, PNVertex& from, PNV
 			if ((yTo - yFrom) / (float)length * to.sv_pos.z < 0.0f) continue;
 			float x = yFrom / slopeM - offsetB / slopeM;
 			if (sx == dx) x = sx;
-			om.PutPixel((int)x, yFrom, ps(to));
+			om.PutPixel((int)x, yFrom, 0.0f, ps(to));
 		}
 	}
 }
@@ -108,6 +108,6 @@ void Rasterizer::DrawScanLine(PixelShader& ps, OutputMerger& om, PNVertex& iLeft
 	for (; xFrom < xTo; xFrom++, iLeft += step)
 	{
 		auto vertex = iLeft;
-		om.PutPixel(xFrom, y, ps(vertex));
+		om.PutPixel(xFrom, y, vertex.pos.z, ps(vertex));
 	}
 }

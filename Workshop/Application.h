@@ -21,7 +21,8 @@ private:
 		}
 	}facePixelShader;
 
-	std::unique_ptr<IndexedTriangleList> pCube;
+	std::unique_ptr<IndexedTriangleList> pCube0;
+	std::unique_ptr<IndexedTriangleList> pCube1;
 
 public:
 	Application();
