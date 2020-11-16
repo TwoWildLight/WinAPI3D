@@ -5,8 +5,8 @@
 
 Texture::Texture(UINT w, UINT h)
 {
-	pTexture = std::make_unique<DirectX::ScratchImage>();
-	pTexture->Initialize2D(DXGI_FORMAT_B8G8R8A8_UNORM, w, h, 1u, 1u);
+	pScratchImage = std::make_unique<DirectX::ScratchImage>();
+	pScratchImage->Initialize2D(DXGI_FORMAT_B8G8R8A8_UNORM, w, h, 1u, 1u);
 	Clear();
 }
 
@@ -30,21 +30,21 @@ Texture::Texture(const std::string& filePath)
 			DirectX::TEX_THRESHOLD_DEFAULT,
 			converted);
 		
-		pTexture = std::make_unique<DirectX::ScratchImage>(std::move(converted));
+		pScratchImage = std::make_unique<DirectX::ScratchImage>(std::move(converted));
 	}
-	pTexture = std::make_unique<DirectX::ScratchImage>(std::move(scratchImage));
+	pScratchImage = std::make_unique<DirectX::ScratchImage>(std::move(scratchImage));
 
 	FlipRB();
 }
 
 Texture::~Texture()
 {
-	pTexture.get()->Release();
+	pScratchImage.get()->Release();
 }
 
 void Texture::FlipRB()
 {
-	auto& image = pTexture->GetImages()[0];
+	auto& image = pScratchImage->GetImages()[0];
 	for (size_t iHeight = 0; iHeight < image.height; iHeight++)
 	{
 		for (size_t iWidth = 0; iWidth < image.width; iWidth++)
@@ -58,28 +58,27 @@ void Texture::FlipRB()
 
 HBITMAP Texture::GenerateBitmap()
 {
-	return CreateBitmap((int)GetWidth(), (int)GetHeight(), 1u, 32u, pTexture->GetPixels());
+	return CreateBitmap((int)GetWidth(), (int)GetHeight(), 1u, 32u, pScratchImage->GetPixels());
 }
 
 size_t Texture::GetWidth() const
 {
-	return pTexture->GetMetadata().width;
+	return pScratchImage->GetMetadata().width;
 }
 
 size_t Texture::GetHeight() const
 {
-	return pTexture->GetMetadata().height;
+	return pScratchImage->GetMetadata().height;
 }
 
 void Texture::PutPixel(UINT x, UINT y, UINT c)
 {
-	*reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = c;
+	*reinterpret_cast<UINT*>(pScratchImage->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u)) = c;
 }
 
 void Texture::PutPixel(UINT x, UINT y, const Vector3& c)
 {
-	auto color = c * 255.0f;
-	PutPixel(x, y, RGB(color.z, color.y, color.x));
+	PutPixel(x, y, RGB(c.z, c.y, c.x));
 }
 
 Vector3 Texture::GetPixel(UINT x, UINT y) const
@@ -90,10 +89,11 @@ Vector3 Texture::GetPixel(UINT x, UINT y) const
 
 UINT Texture::GetPixelRGB(UINT x, UINT y) const
 {
-	return *reinterpret_cast<UINT*>(pTexture->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u));
+	if (y == GetHeight()) y = (UINT)GetHeight() - 1u;
+	return *reinterpret_cast<UINT*>(pScratchImage->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u));
 }
 
 void Texture::Clear()
 {
-	memset(pTexture->GetPixels(), 0, pTexture->GetPixelsSize());
+	memset(pScratchImage->GetPixels(), 0, pScratchImage->GetPixelsSize());
 }

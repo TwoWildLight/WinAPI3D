@@ -6,5 +6,5 @@ class Graphics;
 class ScreenTransformer
 {
 public:
-	void Transform(const Graphics& gfx, PNVertex& v);
+	void Transform(const Graphics& gfx, PNTVertex& v);
 };

@@ -10,12 +10,12 @@ private:
 	bool bCullBackface = true;
 
 public:
-	void DrawLine(PixelShader& ps, OutputMerger& om, PNVertex& from, PNVertex& to);
-	void DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<PNVertex> t);
+	void DrawLine(PixelShader& ps, OutputMerger& om, PNTVertex& from, PNTVertex& to);
+	void DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<PNTVertex> t);
 
 private:
-	void DrawTriangle(PixelShader& ps, OutputMerger& om, PNVertex& v0, PNVertex& v1, PNVertex& v2);
-	void DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, PNVertex& left, PNVertex& right, PNVertex& bottom);
-	void DrawFlatBottomTriangle(PixelShader& ps, OutputMerger& om, PNVertex& right, PNVertex& left, PNVertex& top);
-	void DrawScanLine(PixelShader& ps, OutputMerger& om, PNVertex& iLeft, PNVertex& iRight, int y);
+	void DrawTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& v0, PNTVertex& v1, PNTVertex& v2);
+	void DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& left, PNTVertex& right, PNTVertex& bottom);
+	void DrawFlatBottomTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& right, PNTVertex& left, PNTVertex& top);
+	void DrawScanLine(PixelShader& ps, OutputMerger& om, PNTVertex& iLeft, PNTVertex& iRight);
 };

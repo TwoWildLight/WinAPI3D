@@ -1,9 +1,18 @@
 #pragma once
-#include "TransformCBuf.h"
-#include "Vertex.h"
 #include "DynamicConstant.h"
-#include "../utility/Vector.h"
+#include "TransformCBuf.h"
+#include "Texture.h"
+#include "Vertex.h"
 #include <array>
+
+class Sampler
+{
+public:
+	static Vector4 Sample(Vector2 tc, Texture* pTexture)
+	{
+		return pTexture->GetPixel(UINT(tc.x * pTexture->GetWidth()), UINT(tc.y * pTexture->GetHeight()));
+	}
+};
 
 class BaseShader
 {
@@ -13,6 +22,7 @@ protected:
 protected:
 	TransformCBuf transformCBuf;
 	std::array<DCST::ConstantBuffer*, 5u> cbuffers;
+	std::array<Texture*, 2u> textures;
 
 public:
 	void SetTransformCBuf(TransformCBuf tcb)
@@ -20,9 +30,14 @@ public:
 		transformCBuf = std::move(tcb);
 	}
 
-	void SetConstantBuffer(DCST::ConstantBuffer* pCB, UINT slot = 0u)
+	void BindConstantBuffer(DCST::ConstantBuffer* pCB, UINT slot = 0u)
 	{
 		assert(slot < 5u);
 		cbuffers[slot] = pCB;
+	}
+
+	void BindTexture(Texture* pTexture, UINT slot = 0u)
+	{
+		textures[slot] = pTexture;
 	}
 };

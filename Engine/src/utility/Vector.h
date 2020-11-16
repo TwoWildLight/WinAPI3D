@@ -39,6 +39,7 @@ public:
 public:
 	Vector3() : Vector2(), z(0.0f) {}
 	Vector3(float x, float y, float z) : Vector2(x,y), z(z) {}
+	Vector3(const Vector2& v) : Vector2(v), z(1.0f) {}
 
 public:
 	float Length() const;
@@ -71,6 +72,7 @@ public:
 public:
 	Vector4() : Vector3(), w(0.0f) {}
 	Vector4(float x, float y, float z, float w) : Vector3(x, y, z), w(w) {}
+	Vector4(const Vector3& v) : Vector3(v), w(1.0f) {}
 
 	Vector4 operator +(const Vector4& rhs) const;
 	Vector4& operator +=(const Vector4& rhs);

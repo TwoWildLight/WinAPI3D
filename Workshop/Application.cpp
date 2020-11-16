@@ -14,7 +14,10 @@ Application::Application()
 
 	GetGFX().SetTopology(Context::Topology::TRIANGLE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
-	GetGFX().BindPixelShader(&facePixelShader);
+	pTexture = std::make_unique<Texture>("Images/BlueDice.png");
+
+	texturePS.BindTexture(pTexture.get());
+	GetGFX().BindPixelShader(&texturePS);
 
 	pCube0 = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
 	pCube0->GenerateIndividualFaceNormals();

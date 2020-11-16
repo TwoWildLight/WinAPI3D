@@ -12,7 +12,7 @@ namespace DirectX
 class Texture
 {
 private:
-	std::unique_ptr<DirectX::ScratchImage> pTexture;
+	std::unique_ptr<DirectX::ScratchImage> pScratchImage;
 
 public:
 	Texture(UINT w, UINT h);

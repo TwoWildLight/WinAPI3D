@@ -12,17 +12,19 @@ private:
 	DefaultVertexShader defaultVS;
 	DefaultPixelShader defaultPS;
 
-	class FaceColorPixelShader : public PixelShader
+	class TexturePixelShader : public PixelShader
 	{
 	public:
-		virtual Vector4 operator()(PNVertex& v) override
+		virtual Vector4 operator()(PNTVertex& v) override
 		{
-			return Vector4(abs(v.n.x), abs(v.n.y), abs(v.n.z), 1.0f);
+			return Sampler::Sample(v.tc, textures[0]);
 		}
-	}facePixelShader;
+	}texturePS;
 
 	std::unique_ptr<IndexedTriangleList> pCube0;
 	std::unique_ptr<IndexedTriangleList> pCube1;
+
+	std::unique_ptr<Texture> pTexture;
 
 public:
 	Application();
