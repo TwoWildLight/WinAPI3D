@@ -8,6 +8,13 @@ Graphics::Graphics(HWND hWnd, UINT w, UINT h, float scale)
 	hMainDC = GetDC(hWnd);
 	hBufferDC = CreateCompatibleDC(hMainDC);
 
+	SetTextColor(hMainDC, RGB(255, 255, 255));
+	SetBkMode(hMainDC, TRANSPARENT);
+
+	HFONT hFixedFont = CreateFontW(25, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Unispace");
+	SelectObject(hMainDC, hFixedFont);
+	DeleteObject(hFixedFont);
+
 	resWidth = UINT((float)screenWidth * scale);
 	resHeight = UINT((float)screenHeight * scale);
 
@@ -25,6 +32,9 @@ void Graphics::EndFrame()
 	SelectObject(hBufferDC, bitmap);
 	StretchBlt(hMainDC, 0, 0, screenWidth, screenHeight, hBufferDC, 0, 0, resWidth, resHeight, SRCCOPY);
 	DeleteObject(bitmap);
+
+	RECT rt = { 0,0,200,100 };
+	DrawTextW(hMainDC, tmpString.c_str(), -1, &rt, NULL);
 }
 
 void Graphics::SetTopology(Context::Topology topology)

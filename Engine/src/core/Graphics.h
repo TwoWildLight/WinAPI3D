@@ -2,6 +2,7 @@
 #include "LightWindows.h"
 #include "../rendering/Pipeline.h"
 #include <memory>
+#include <string>
 
 class Graphics final
 {
@@ -10,6 +11,8 @@ private:
 	HDC hBufferDC;
 
 	std::unique_ptr<Pipeline> pPipeline;
+
+	std::wstring tmpString;
 
 private:
 	UINT screenWidth;
@@ -29,6 +32,11 @@ public:
 public:
 	void BeginFrame();
 	void EndFrame();
+
+	void SetTmpString(const std::wstring& str)
+	{
+		tmpString = str;
+	}
 
 	void SetTopology(Context::Topology topology);
 	void BindVertexShader(VertexShader* pVS);

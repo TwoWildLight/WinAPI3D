@@ -12,12 +12,12 @@ Application::Application()
 
 	camera.SetType(Camera::Type::FREE_VIEW);
 
-	GetGFX().SetTopology(Context::Topology::TRIANGLE_LIST);
+	GetGFX().SetTopology(Context::Topology::LINE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
 	pTexture = std::make_unique<Texture>("Images/BlueDice.png");
 
 	texturePS.BindTexture(pTexture.get());
-	GetGFX().BindPixelShader(&texturePS);
+	GetGFX().BindPixelShader(&defaultPS);
 
 	pCube0 = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
 	pCube0->GenerateIndividualFaceNormals();
@@ -30,17 +30,6 @@ Application::Application()
 	{
 		v.pos *= m;
 		v.n *= m;
-	}
-}
-
-void Application::Initiate()
-{
-	while (ProceedMessage())
-	{
-		GetGFX().BeginFrame();
-		Update(timer.Mark());
-		Render(timer.Peek());
-		GetGFX().EndFrame();
 	}
 }
 
@@ -67,4 +56,17 @@ void Application::Render(float fDeltaTime)
 {
 	GetGFX().Render(*pCube0);
 	GetGFX().Render(*pCube1);
+}
+
+void Application::Initiate()
+{
+	while (ProceedMessage())
+	{
+		GetGFX().BeginFrame();
+		float deltaTime = timer.Mark();
+		GetGFX().SetTmpString(L"FPS : " + std::to_wstring(1.0f / deltaTime));
+		Update(deltaTime);
+		Render(timer.Peek());
+		GetGFX().EndFrame();
+	}
 }
