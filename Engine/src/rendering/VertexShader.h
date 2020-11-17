@@ -4,13 +4,13 @@
 class VertexShader : public BaseShader
 {
 public:
-	virtual PNTVertex& operator ()(PNTVertex& v) abstract;
+	virtual Vertex& operator ()(Vertex& v) abstract;
 };
 
 class DefaultVertexShader : public VertexShader
 {
 public:
-	virtual PNTVertex& operator()(PNTVertex& v) override
+	virtual Vertex& operator()(Vertex& v) override
 	{
 		v.sv_pos = Vector4(v.pos.x, v.pos.y, v.pos.z, 1.0f) * transformCBuf.GetViewProjectionMatrix();
 		v.pos *= transformCBuf.GetViewMatrix();

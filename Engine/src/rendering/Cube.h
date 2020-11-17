@@ -6,7 +6,7 @@ class Cube
 public:
 	static IndexedTriangleList CreateCube(float size = 1.0f)
 	{
-		std::vector<PNTVertex> vertices(24);
+		std::vector<Vertex> vertices(24);
 
 		const float side = size / 2.0f;
 		vertices[0].pos = { -side, side, -side }; // near

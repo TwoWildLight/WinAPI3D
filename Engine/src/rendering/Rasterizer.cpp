@@ -2,7 +2,14 @@
 #include "PixelShader.h"
 #include "OutputMerger.h"
 
-void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, PNTVertex& from, PNTVertex& to)
+void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, Triangle<Vertex>& t)
+{
+	DrawLine(ps, om, t.v0, t.v1);
+	DrawLine(ps, om, t.v1, t.v2);
+	//DrawLine(ps, om, t.v2, t.v0);
+}
+
+void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, Vertex& from, Vertex& to)
 {
 	float sx = from.sv_pos.x, sy = from.sv_pos.y;
 	float dx = to.sv_pos.x, dy = to.sv_pos.y;
@@ -38,31 +45,28 @@ void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, PNTVertex& from, PN
 	}
 }
 
-void Rasterizer::DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<PNTVertex> t)
+void Rasterizer::DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<Vertex>& t)
 {
-	if (Vector3::Dot(Vector3(0.0f, 0.0f, 1.0f), Vector3::Cross(t.v1.sv_pos - t.v0.sv_pos, t.v2.sv_pos - t.v0.sv_pos)) > 0.0f)
-	{
-		DrawTriangle(ps, om, t.v0, t.v1, t.v2);
-	}
+	DrawTriangle(ps, om, t.v0, t.v1, t.v2);
 }
 
-void Rasterizer::DrawTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& v0, PNTVertex& v1, PNTVertex& v2)
+void Rasterizer::DrawTriangle(PixelShader& ps, OutputMerger& om, Vertex& v0, Vertex& v1, Vertex& v2)
 {
 	if (v0.sv_pos.y > v1.sv_pos.y) std::swap(v0, v1);
 	if (v0.sv_pos.y > v2.sv_pos.y) std::swap(v0, v2);
 	if (v1.sv_pos.y > v2.sv_pos.y) std::swap(v1, v2);
 
-	PNTVertex vTopMiddle = v1 - v0;
-	PNTVertex vTopBottom = v2 - v0;
+	Vertex vTopMiddle = v1 - v0;
+	Vertex vTopBottom = v2 - v0;
 	float yRatio = (v1.sv_pos.y - v0.sv_pos.y) / (v2.sv_pos.y - v0.sv_pos.y);
-	PNTVertex split = vTopBottom * yRatio + v0;
+	Vertex split = vTopBottom * yRatio + v0;
 
 	if (split.sv_pos.x > v1.sv_pos.x) std::swap(split, v1);
 	DrawFlatTopTriangle(ps, om, split, v1, v2);
 	DrawFlatBottomTriangle(ps, om, v1, split, v0);
 }
 
-void Rasterizer::DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& left, PNTVertex& right, PNTVertex& bottom)
+void Rasterizer::DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, Vertex& left, Vertex& right, Vertex& bottom)
 {
 	int yFrom = (int)left.sv_pos.y;
 	int yTo = (int)bottom.sv_pos.y;
@@ -80,25 +84,25 @@ void Rasterizer::DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, PNTVerte
 	}
 }
 
-void Rasterizer::DrawFlatBottomTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& right, PNTVertex& left, PNTVertex& top)
+void Rasterizer::DrawFlatBottomTriangle(PixelShader& ps, OutputMerger& om, Vertex& right, Vertex& left, Vertex& top)
 {
 	int yFrom = (int)top.sv_pos.y;
 	int yTo = (int)right.sv_pos.y;
 
-	PNTVertex vTopLeft = left - top;
-	PNTVertex vTopRight = right - top;
+	Vertex vTopLeft = left - top;
+	Vertex vTopRight = right - top;
 
 	for (int y = yFrom; y < yTo; y++)
 	{
 		float yRatio = (float)(y - yFrom) / (yTo - yFrom);
-		PNTVertex iLeft = vTopLeft * yRatio + top;
-		PNTVertex iRight = vTopRight * yRatio + top;
+		Vertex iLeft = vTopLeft * yRatio + top;
+		Vertex iRight = vTopRight * yRatio + top;
 
 		DrawScanLine(ps, om, iLeft, iRight);
 	}
 }
 
-void Rasterizer::DrawScanLine(PixelShader& ps, OutputMerger& om, PNTVertex& iLeft, PNTVertex& iRight)
+void Rasterizer::DrawScanLine(PixelShader& ps, OutputMerger& om, Vertex& iLeft, Vertex& iRight)
 {
 	int xFrom = (int)floorf(iLeft.sv_pos.x + 0.5f);
 	int xTo = (int)ceilf(iRight.sv_pos.x + 0.5f);

@@ -27,8 +27,8 @@ HBITMAP OutputMerger::GetBitmapRTV()
 
 void OutputMerger::PutPixel(UINT x, UINT y, float z, const Vector3& c)
 {
+	if (x >= renderTargetView.GetWidth() || y >= renderTargetView.GetHeight()) return;
 	size_t target = renderTargetView.GetWidth() * y + x;
-	if (target > size_t(renderTargetView.GetWidth()) * renderTargetView.GetHeight() || x >= renderTargetView.GetWidth()) return;
 
 	if (z < depthBuffer[target])
 	{

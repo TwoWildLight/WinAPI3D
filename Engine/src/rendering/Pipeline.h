@@ -1,10 +1,11 @@
 #pragma once
 #include "Context.h"
 #include "VertexShader.h"
-#include "ScreenTransformer.h"
-#include "Rasterizer.h"
 #include "PixelShader.h"
 #include "OutputMerger.h"
+#include "IndexedTriangleList.h"
+
+class Graphics;
 
 class Pipeline
 {
@@ -13,8 +14,6 @@ private:
 	Context context;
 
 	VertexShader* pVertexShader;
-	ScreenTransformer screenTransformer;
-	Rasterizer rasterizer;
 	PixelShader* pPixelShader;
 	OutputMerger outputMerger;
 

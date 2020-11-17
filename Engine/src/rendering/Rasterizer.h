@@ -6,16 +6,14 @@ class OutputMerger;
 
 class Rasterizer
 {
-private:
-	bool bCullBackface = true;
-
 public:
-	void DrawLine(PixelShader& ps, OutputMerger& om, PNTVertex& from, PNTVertex& to);
-	void DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<PNTVertex> t);
+	static void DrawLine(PixelShader& ps, OutputMerger& om, Triangle<Vertex>& t);
+	static void DrawTriangle(PixelShader& ps, OutputMerger& om, Triangle<Vertex>& t);
 
 private:
-	void DrawTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& v0, PNTVertex& v1, PNTVertex& v2);
-	void DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& left, PNTVertex& right, PNTVertex& bottom);
-	void DrawFlatBottomTriangle(PixelShader& ps, OutputMerger& om, PNTVertex& right, PNTVertex& left, PNTVertex& top);
-	void DrawScanLine(PixelShader& ps, OutputMerger& om, PNTVertex& iLeft, PNTVertex& iRight);
+	static void DrawLine(PixelShader& ps, OutputMerger& om, Vertex& from, Vertex& to);
+	static void DrawTriangle(PixelShader& ps, OutputMerger& om, Vertex& v0, Vertex& v1, Vertex& v2);
+	static void DrawFlatTopTriangle(PixelShader& ps, OutputMerger& om, Vertex& left, Vertex& right, Vertex& bottom);
+	static void DrawFlatBottomTriangle(PixelShader& ps, OutputMerger& om, Vertex& right, Vertex& left, Vertex& top);
+	static void DrawScanLine(PixelShader& ps, OutputMerger& om, Vertex& iLeft, Vertex& iRight);
 };

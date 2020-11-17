@@ -1,7 +1,7 @@
 #include "ScreenTransformer.h"
 #include "../core/Graphics.h"
 
-void ScreenTransformer::Transform(const Graphics& gfx, PNTVertex& v)
+void ScreenTransformer::Transform(const Graphics& gfx, Vertex& v)
 {
 	const float xFactor = gfx.GetWidth() / 2.0f;
 	const float yFactor = gfx.GetHeight() / 2.0f;

@@ -12,10 +12,10 @@ struct Triangle
 class IndexedTriangleList
 {
 public:
-	std::vector<PNTVertex> vertices;
+	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 
-	PNTVertex& operator [](size_t index)
+	Vertex& operator [](size_t index)
 	{
 		return vertices[indices[index]];
 	}

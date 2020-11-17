@@ -12,12 +12,12 @@ Application::Application()
 
 	camera.SetType(Camera::Type::FREE_VIEW);
 
-	GetGFX().SetTopology(Context::Topology::LINE_LIST);
+	GetGFX().SetTopology(Context::Topology::TRIANGLE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
 	pTexture = std::make_unique<Texture>("Images/BlueDice.png");
 
 	texturePS.BindTexture(pTexture.get());
-	GetGFX().BindPixelShader(&defaultPS);
+	GetGFX().BindPixelShader(&texturePS);
 
 	pCube0 = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
 	pCube0->GenerateIndividualFaceNormals();
@@ -55,7 +55,7 @@ void Application::Update(float fDeltaTime)
 void Application::Render(float fDeltaTime)
 {
 	GetGFX().Render(*pCube0);
-	GetGFX().Render(*pCube1);
+	//GetGFX().Render(*pCube1);
 }
 
 void Application::Initiate()

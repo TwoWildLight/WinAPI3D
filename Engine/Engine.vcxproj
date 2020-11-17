@@ -179,6 +179,7 @@
     <ClCompile Include="src\rendering\Rasterizer.cpp" />
     <ClCompile Include="src\rendering\ScreenTransformer.cpp" />
     <ClCompile Include="src\rendering\Texture.cpp" />
+    <ClCompile Include="src\rendering\TriangleAssembler.cpp" />
     <ClCompile Include="src\utility\Matrix.cpp" />
     <ClCompile Include="src\utility\Vector.cpp" />
   </ItemGroup>
@@ -202,6 +203,7 @@
     <ClInclude Include="src\rendering\Rasterizer.h" />
     <ClInclude Include="src\rendering\Texture.h" />
     <ClInclude Include="src\rendering\TransformCBuf.h" />
+    <ClInclude Include="src\rendering\TriangleAssembler.h" />
     <ClInclude Include="src\rendering\Vertex.h" />
     <ClInclude Include="src\rendering\VertexShader.h" />
     <ClInclude Include="src\utility\Matrix.h" />

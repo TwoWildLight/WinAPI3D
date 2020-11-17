@@ -15,7 +15,7 @@ private:
 	class TexturePixelShader : public PixelShader
 	{
 	public:
-		virtual Vector4 operator()(PNTVertex& v) override
+		virtual Vector4 operator()(Vertex& v) override
 		{
 			return Sampler::Sample(v.tc, textures[0]);
 		}
