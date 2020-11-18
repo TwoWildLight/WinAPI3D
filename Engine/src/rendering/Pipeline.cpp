@@ -1,7 +1,7 @@
 #include "Pipeline.h"
 #include "../core/Graphics.h"
 #include "TriangleAssembler.h"
-#include "ScreenTransformer.h"
+#include "NDCScreenTransformer.h"
 #include "Rasterizer.h"
 #include <cassert>
 
@@ -46,10 +46,11 @@ void Pipeline::Render(IndexedTriangleList itList)
 	}
 
 	// TA Culls & Clips Triangles
-	for (auto& t : TriangleAssembler::Assemble(itList))
+	auto mProjection = pVertexShader->GetTransforms().GetProjectionMatrix();
+	for (auto& t : TriangleAssembler::Assemble(itList, mProjection))
 	{
 		// Depth Division & NDC To Screen Space
-		ScreenTransformer::Transform(gfx, t);
+		NDCScreenTransformer::Transform(gfx, t);
 
 		// Rasterization
 		switch (context.GetTopology())

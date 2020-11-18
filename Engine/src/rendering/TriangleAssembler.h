@@ -5,5 +5,5 @@
 class TriangleAssembler
 {
 public:
-	static std::vector<Triangle<Vertex>> Assemble(IndexedTriangleList& itList);
+	static std::vector<Triangle<Vertex>> Assemble(IndexedTriangleList& itList, const Matrix& mProj);
 };

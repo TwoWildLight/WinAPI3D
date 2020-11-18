@@ -66,10 +66,10 @@
     <ClCompile Include="src\rendering\OutputMerger.cpp">
       <Filter>src\rendering\pipeline</Filter>
     </ClCompile>
-    <ClCompile Include="src\rendering\ScreenTransformer.cpp">
+    <ClCompile Include="src\rendering\TriangleAssembler.cpp">
       <Filter>src\rendering\pipeline</Filter>
     </ClCompile>
-    <ClCompile Include="src\rendering\TriangleAssembler.cpp">
+    <ClCompile Include="src\rendering\NDCScreenTransformer.cpp">
       <Filter>src\rendering\pipeline</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,9 +125,6 @@
     <ClInclude Include="src\rendering\DynamicConstant.h">
       <Filter>src\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\rendering\ScreenTransformer.h">
-      <Filter>src\rendering\pipeline</Filter>
-    </ClInclude>
     <ClInclude Include="src\rendering\VertexShader.h">
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
@@ -154,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="src\utility\Pulsar.h">
       <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rendering\NDCScreenTransformer.h">
+      <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

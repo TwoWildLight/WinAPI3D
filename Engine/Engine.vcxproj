@@ -177,7 +177,7 @@
     <ClCompile Include="src\rendering\OutputMerger.cpp" />
     <ClCompile Include="src\rendering\Pipeline.cpp" />
     <ClCompile Include="src\rendering\Rasterizer.cpp" />
-    <ClCompile Include="src\rendering\ScreenTransformer.cpp" />
+    <ClCompile Include="src\rendering\NDCScreenTransformer.cpp" />
     <ClCompile Include="src\rendering\Texture.cpp" />
     <ClCompile Include="src\rendering\TriangleAssembler.cpp" />
     <ClCompile Include="src\utility\Matrix.cpp" />
@@ -198,7 +198,7 @@
     <ClInclude Include="src\rendering\IndexedTriangleList.h" />
     <ClInclude Include="src\rendering\OutputMerger.h" />
     <ClInclude Include="src\rendering\PixelShader.h" />
-    <ClInclude Include="src\rendering\ScreenTransformer.h" />
+    <ClInclude Include="src\rendering\NDCScreenTransformer.h" />
     <ClInclude Include="src\rendering\Pipeline.h" />
     <ClInclude Include="src\rendering\Rasterizer.h" />
     <ClInclude Include="src\rendering\Texture.h" />

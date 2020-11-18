@@ -3,7 +3,7 @@
 
 class Graphics;
 
-class ScreenTransformer
+class NDCScreenTransformer
 {
 public:
 	static void Transform(const Graphics& gfx, Vertex& v);

@@ -7,12 +7,13 @@ Application::Application()
 	:
 	Window((wchar_t*)L"Workshop", 1280u, 720u),
 	camera(GetGFX(), { 0.0f, 0.0f, -3.0f }),
-	fpsCounter(10u),
+	fpsCounter(30u),
 	fpsPulsar(0.5f)
 {
 	DisableCursor();
 
 	camera.SetType(Camera::Type::FREE_VIEW);
+	camera.SetSpeed(2.0f);
 
 	GetGFX().SetTopology(Context::Topology::LINE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
@@ -50,7 +51,7 @@ void Application::Update(float fDeltaTime)
 	auto mView = camera.GetViewMatrix();
 	auto mProj = camera.GetProjectionMatrix();
 	tcbuf.SetViewMatrix(mView);
-	tcbuf.SetViewProjectionMatrix(mView * mProj);
+	tcbuf.SetProjectionMatrix(mProj);
 	defaultVS.SetTransformCBuf(tcbuf);
 }
 

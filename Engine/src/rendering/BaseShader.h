@@ -29,6 +29,10 @@ public:
 	{
 		transformCBuf = std::move(tcb);
 	}
+	TransformCBuf GetTransforms() const
+	{
+		return transformCBuf;
+	}
 
 	void BindConstantBuffer(DCST::ConstantBuffer* pCB, UINT slot = 0u)
 	{

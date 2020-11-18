@@ -6,42 +6,18 @@ void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, Triangle<Vertex>& t
 {
 	DrawLine(ps, om, t.v0, t.v1);
 	DrawLine(ps, om, t.v1, t.v2);
-	//DrawLine(ps, om, t.v2, t.v0);
+	DrawLine(ps, om, t.v2, t.v0);
 }
 
 void Rasterizer::DrawLine(PixelShader& ps, OutputMerger& om, Vertex& from, Vertex& to)
 {
-	float sx = from.sv_pos.x, sy = from.sv_pos.y;
-	float dx = to.sv_pos.x, dy = to.sv_pos.y;
-
-	float slopeM = (dy - sy) / (dx - sx);
-	float offsetB = sy - sx * slopeM;
-
-	if ((slopeM <= 1.0 && slopeM >= -1.0f && slopeM != 0.0f) || sy == dy)
+	float division = std::max(abs(to.sv_pos.x - from.sv_pos.x), abs(to.sv_pos.y - from.sv_pos.y));
+	Vertex iStep = (to - from) / division;
+	for (int i = 0; i <= int(division); i++)
 	{
-		int xFrom = (int)std::min(sx, dx);
-		int xTo = (int)std::max(sx, dx);
-		int length = xTo - xFrom;
-
-		for (; xFrom < xTo; xFrom++)
-		{
-			if ((xTo - xFrom) / (float)length * to.sv_pos.z < 0.0f) continue;
-			float y = slopeM * xFrom + offsetB;
-			om.PutPixel(xFrom, (int)y, 0.0f, ps(from));
-		}
-	}
-	else {
-		int yFrom = (int)std::min(sy, dy);
-		int yTo = (int)std::max(sy, dy);
-		int length = yTo - yFrom;
-
-		for (; yFrom < yTo; yFrom++)
-		{
-			if ((yTo - yFrom) / (float)length * to.sv_pos.z < 0.0f) continue;
-			float x = yFrom / slopeM - offsetB / slopeM;
-			if (sx == dx) x = sx;
-			om.PutPixel((int)x, yFrom, 0.0f, ps(to));
-		}
+		Vertex v = from + iStep * (float)i;
+		if (v.sv_pos.x < 0.0f || v.sv_pos.x > om.GetRTVWidth() - 1 || v.sv_pos.y < 0.0f || v.sv_pos.y > om.GetRTVHeight() - 1) continue;
+		om.PutPixel((UINT)v.sv_pos.x, (UINT)v.sv_pos.y, v.sv_pos.z, ps(v));
 	}
 }
 
@@ -111,8 +87,9 @@ void Rasterizer::DrawScanLine(PixelShader& ps, OutputMerger& om, Vertex& iLeft, 
 
 	for (; xFrom < xTo; xFrom++, iLeft += step)
 	{
-		auto vertex = iLeft;
-		vertex.tc /= vertex.sv_pos.z;
-		om.PutPixel((UINT)vertex.sv_pos.x, (UINT)vertex.sv_pos.y, vertex.sv_pos.z, ps(vertex));
+		auto v = iLeft;
+		v.tc /= v.sv_pos.w;
+		if (v.sv_pos.x < 0.0f || v.sv_pos.x > om.GetRTVWidth() - 1 || v.sv_pos.y < 0.0f || v.sv_pos.y > om.GetRTVHeight() - 1) continue;
+		om.PutPixel((UINT)v.sv_pos.x, (UINT)v.sv_pos.y, v.sv_pos.z, ps(v));
 	}
 }

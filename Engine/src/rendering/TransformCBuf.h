@@ -8,7 +8,7 @@ public:
 	struct Transforms
 	{
 		Matrix mView;
-		Matrix mViewProj;
+		Matrix mProj;
 	};
 
 private:
@@ -19,17 +19,21 @@ public:
 	{
 		transforms.mView = std::move(m);
 	}
-	void SetViewProjectionMatrix(Matrix m)
+	void SetProjectionMatrix(Matrix m)
 	{
-		transforms.mViewProj = std::move(m);
+		transforms.mProj = std::move(m);
 	}
 
 	Matrix GetViewMatrix() const
 	{
 		return transforms.mView;
 	}
+	Matrix GetProjectionMatrix() const
+	{
+		return transforms.mProj;
+	}
 	Matrix GetViewProjectionMatrix() const
 	{
-		return transforms.mViewProj;
+		return transforms.mView * transforms.mProj;
 	}
 };

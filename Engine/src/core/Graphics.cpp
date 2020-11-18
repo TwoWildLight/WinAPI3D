@@ -8,7 +8,7 @@ Graphics::Graphics(HWND hWnd, UINT w, UINT h, float scale)
 	hMainDC = GetDC(hWnd);
 	hBufferDC = CreateCompatibleDC(hMainDC);
 
-	SetTextColor(hBufferDC, RGB(255, 255, 255));
+	SetTextColor(hBufferDC, RGB(255, 80, 120));
 	SetBkMode(hBufferDC, TRANSPARENT);
 
 	HFONT hFixedFont = CreateFontW(25, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Unispace");
