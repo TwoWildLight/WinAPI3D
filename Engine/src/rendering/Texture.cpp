@@ -87,9 +87,13 @@ Vector3 Texture::GetPixel(UINT x, UINT y) const
 	return { float((rgb >> 16u) & 0xFFu), float((rgb >> 8u) & 0xFFu), float(rgb & 0xFFu) };
 }
 
+void Texture::CopyFrom(const void* pData, size_t size)
+{
+	memcpy(pScratchImage->GetPixels(), pData, size);
+}
+
 UINT Texture::GetPixelRGB(UINT x, UINT y) const
 {
-	if (y == GetHeight()) y = (UINT)GetHeight() - 1u;
 	return *reinterpret_cast<UINT*>(pScratchImage->GetPixels() + (GetWidth() * 4u * y + size_t(x) * 4u));
 }
 

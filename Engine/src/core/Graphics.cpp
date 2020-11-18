@@ -8,11 +8,11 @@ Graphics::Graphics(HWND hWnd, UINT w, UINT h, float scale)
 	hMainDC = GetDC(hWnd);
 	hBufferDC = CreateCompatibleDC(hMainDC);
 
-	SetTextColor(hMainDC, RGB(255, 255, 255));
-	SetBkMode(hMainDC, TRANSPARENT);
+	SetTextColor(hBufferDC, RGB(255, 255, 255));
+	SetBkMode(hBufferDC, TRANSPARENT);
 
 	HFONT hFixedFont = CreateFontW(25, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Unispace");
-	SelectObject(hMainDC, hFixedFont);
+	SelectObject(hBufferDC, hFixedFont);
 	DeleteObject(hFixedFont);
 
 	resWidth = UINT((float)screenWidth * scale);
@@ -30,11 +30,9 @@ void Graphics::EndFrame()
 {
 	HBITMAP bitmap = pPipeline->GetOutputMerger().GetBitmapRTV();
 	SelectObject(hBufferDC, bitmap);
-	StretchBlt(hMainDC, 0, 0, screenWidth, screenHeight, hBufferDC, 0, 0, resWidth, resHeight, SRCCOPY);
+	TextOutW(hBufferDC, 0, 0, tmpString.c_str(), lstrlenW(tmpString.c_str()));
+	StretchBlt(hMainDC, 0, 0, screenWidth, screenHeight, hBufferDC, 0, 0, resWidth, resHeight, 0x00CC0020);
 	DeleteObject(bitmap);
-
-	RECT rt = { 0,0,200,100 };
-	DrawTextW(hMainDC, tmpString.c_str(), -1, &rt, NULL);
 }
 
 void Graphics::SetTopology(Context::Topology topology)

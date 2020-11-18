@@ -149,5 +149,11 @@
     <ClInclude Include="src\rendering\TriangleAssembler.h">
       <Filter>src\rendering\pipeline</Filter>
     </ClInclude>
+    <ClInclude Include="src\utility\FPSCounter.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\Pulsar.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

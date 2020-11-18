@@ -113,6 +113,6 @@ void Rasterizer::DrawScanLine(PixelShader& ps, OutputMerger& om, Vertex& iLeft, 
 	{
 		auto vertex = iLeft;
 		vertex.tc /= vertex.sv_pos.z;
-		om.PutPixel((UINT)vertex.sv_pos.x, (UINT)vertex.sv_pos.y, 1.0f / vertex.sv_pos.z, ps(vertex));
+		om.PutPixel((UINT)vertex.sv_pos.x, (UINT)vertex.sv_pos.y, vertex.sv_pos.z, ps(vertex));
 	}
 }

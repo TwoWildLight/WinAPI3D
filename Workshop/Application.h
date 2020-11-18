@@ -2,12 +2,16 @@
 #include <core/Window.h>
 #include <utility/Timer.h>
 #include <components/Camera.h>
+#include <utility/FPSCounter.h>
+#include <utility/Pulsar.h>
 
 class Application : public Window
 {
 private:
 	Timer timer;
 	Camera camera;
+	FPSCounter fpsCounter;
+	Pulsar fpsPulsar;
 
 	DefaultVertexShader defaultVS;
 	DefaultPixelShader defaultPS;

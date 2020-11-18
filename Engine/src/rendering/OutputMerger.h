@@ -5,8 +5,11 @@
 class OutputMerger
 {
 private:
-	Texture renderTargetView;
+	std::vector<UINT> renderTargetView;
 	std::vector<float> depthBuffer;
+
+	UINT rtvWidth;
+	UINT rtvHeight;
 
 public:
 	OutputMerger(UINT w, UINT h);
@@ -14,6 +17,9 @@ public:
 public:
 	void ClearRenderTarget();
 	void ClearDepthBuffer();
+
+	UINT GetRTVWidth() const;
+	UINT GetRTVHeight() const;
 
 	HBITMAP GetBitmapRTV();
 

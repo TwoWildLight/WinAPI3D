@@ -129,5 +129,5 @@ Matrix Camera::GetViewMatrix()
 Matrix Camera::GetProjectionMatrix()
 {
 	float aspectRatio = (float)gfx.GetWidth() / gfx.GetHeight();
-	return Matrix::Projection(fFieldOfView, aspectRatio, 0.0f, 100.0f);
+	return Matrix::Projection(fFieldOfView, aspectRatio, 0.2f, 100.0f);
 }

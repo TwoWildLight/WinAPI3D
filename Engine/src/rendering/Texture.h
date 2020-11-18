@@ -3,6 +3,7 @@
 #include "../utility/Vector.h"
 #include <memory>
 #include <string>
+#include <queue>
 
 namespace DirectX
 {
@@ -32,6 +33,8 @@ public:
 	void PutPixel(UINT x, UINT y, const Vector3& c);
 	UINT GetPixelRGB(UINT x, UINT y) const;
 	Vector3 GetPixel(UINT x, UINT y) const;
+
+	void CopyFrom(const void* pData, size_t size);
 
 	void Clear();
 };

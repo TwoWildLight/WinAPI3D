@@ -10,7 +10,7 @@ class Sampler
 public:
 	static Vector4 Sample(Vector2 tc, Texture* pTexture)
 	{
-		return pTexture->GetPixel(UINT(tc.x * pTexture->GetWidth()), UINT(tc.y * pTexture->GetHeight()));
+		return pTexture->GetPixel(UINT(tc.x * (pTexture->GetWidth() - 1u)), UINT(tc.y * (pTexture->GetHeight() - 1u)));
 	}
 };
 

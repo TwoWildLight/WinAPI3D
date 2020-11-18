@@ -14,3 +14,10 @@ void ScreenTransformer::Transform(const Graphics& gfx, Vertex& v)
 	v.sv_pos.x = v.sv_pos.x * xFactor + xFactor;
 	v.sv_pos.y = -v.sv_pos.y * yFactor + yFactor;
 }
+
+void ScreenTransformer::Transform(const Graphics& gfx, Triangle<Vertex>& t)
+{
+	Transform(gfx, t.v0);
+	Transform(gfx, t.v1);
+	Transform(gfx, t.v2);
+}

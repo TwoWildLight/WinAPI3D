@@ -12,14 +12,13 @@ private:
 
 	std::unique_ptr<Pipeline> pPipeline;
 
-	std::wstring tmpString;
-
-private:
 	UINT screenWidth;
 	UINT screenHeight;
 
 	UINT resWidth;
 	UINT resHeight;
+
+	std::wstring tmpString;
 
 public:
 	Graphics(HWND hWnd, UINT w, UINT h, float scale = 1.0f);

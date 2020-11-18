@@ -39,9 +39,9 @@ void Pipeline::Clear()
 
 void Pipeline::Render(IndexedTriangleList itList)
 {
-	// Vertex Shader Stage
 	for (size_t i = 0; i < itList.vertices.size(); i++)
 	{
+		// Vertex Shader Stage
 		(*pVertexShader)(itList.vertices[i]);
 	}
 
@@ -49,9 +49,7 @@ void Pipeline::Render(IndexedTriangleList itList)
 	for (auto& t : TriangleAssembler::Assemble(itList))
 	{
 		// Depth Division & NDC To Screen Space
-		ScreenTransformer::Transform(gfx, t.v0);
-		ScreenTransformer::Transform(gfx, t.v1);
-		ScreenTransformer::Transform(gfx, t.v2);
+		ScreenTransformer::Transform(gfx, t);
 
 		// Rasterization
 		switch (context.GetTopology())

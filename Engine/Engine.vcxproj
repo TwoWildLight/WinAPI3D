@@ -206,7 +206,9 @@
     <ClInclude Include="src\rendering\TriangleAssembler.h" />
     <ClInclude Include="src\rendering\Vertex.h" />
     <ClInclude Include="src\rendering\VertexShader.h" />
+    <ClInclude Include="src\utility\FPSCounter.h" />
     <ClInclude Include="src\utility\Matrix.h" />
+    <ClInclude Include="src\utility\Pulsar.h" />
     <ClInclude Include="src\utility\Timer.h" />
     <ClInclude Include="src\utility\Vector.h" />
   </ItemGroup>

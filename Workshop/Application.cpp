@@ -6,18 +6,20 @@
 Application::Application()
 	:
 	Window((wchar_t*)L"Workshop", 1280u, 720u),
-	camera(GetGFX(), { 0.0f, 0.0f, -3.0f })
+	camera(GetGFX(), { 0.0f, 0.0f, -3.0f }),
+	fpsCounter(10u),
+	fpsPulsar(0.5f)
 {
 	DisableCursor();
 
 	camera.SetType(Camera::Type::FREE_VIEW);
 
-	GetGFX().SetTopology(Context::Topology::TRIANGLE_LIST);
+	GetGFX().SetTopology(Context::Topology::LINE_LIST);
 	GetGFX().BindVertexShader(&defaultVS);
 	pTexture = std::make_unique<Texture>("Images/BlueDice.png");
 
 	texturePS.BindTexture(pTexture.get());
-	GetGFX().BindPixelShader(&texturePS);
+	GetGFX().BindPixelShader(&defaultPS);
 
 	pCube0 = std::make_unique<IndexedTriangleList>(Cube::CreateCube(1.0f));
 	pCube0->GenerateIndividualFaceNormals();
@@ -64,7 +66,11 @@ void Application::Initiate()
 	{
 		GetGFX().BeginFrame();
 		float deltaTime = timer.Mark();
-		GetGFX().SetTmpString(L"FPS : " + std::to_wstring(1.0f / deltaTime));
+		fpsCounter.Update(deltaTime);
+		if (fpsPulsar.UpdateAndSet(deltaTime))
+		{
+			GetGFX().SetTmpString(L"FPS : " + std::to_wstring((int)fpsCounter.GetAverageFPS()));
+		}
 		Update(deltaTime);
 		Render(timer.Peek());
 		GetGFX().EndFrame();
